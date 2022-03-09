@@ -6,9 +6,9 @@ A plugin for Strapi Headless CMS that provides SEO fields to Single and Collecti
 
 ![Screenshot](public/assets/homeview.png)
 
-# Versions
+### Versions
 
-- Beta - v0.0.71
+- Beta - v0.1.0
 
 ### 🖐 Requirements
 
@@ -131,7 +131,7 @@ seo: {
 
 ## Local Development
 
-- Download plugin repo https://gitlab.com/develocraft/strapi-seo-plugin
+- Download plugin repo https://github.com/Develocraft-Labs/strapi-plugin-seo
 - Create new strapi project (if you don't have one already.)
 - Create plugins folder at strapi project root level.
 - Copy plugin repo to plugins folder.
