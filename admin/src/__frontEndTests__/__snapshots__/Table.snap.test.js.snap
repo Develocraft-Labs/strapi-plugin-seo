@@ -1,0 +1,686 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
+.c8 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.c2 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.3rem 0.7rem;
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  margin: 1.8rem 0rem 1rem 0rem;
+  background-color: rgb(255,255,255);
+  border: 1px solid rgb(227,233,243);
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.c11 {
+  fill: rgb(109,187,26);
+}
+
+.c14 {
+  fill: rgba(0,0,0,1);
+  height: 1.3rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c13 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0rem 0.8rem;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c5 {
+  background: #f3f3f3;
+  height: 43px;
+  overflow: hidden;
+}
+
+.c4 {
+  border-radius: 3px;
+  border-collapse: initial;
+  box-shadow: rgb(227 233 243) 0px 2px 4px;
+  color: #212529;
+  table-layout: fixed;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.c6 {
+  border: none;
+  padding: 0;
+  whitespace: nowrap;
+}
+
+.c9 {
+  height: 54px;
+  background: rgb(255,255,255);
+  border: none;
+  padding: 0rem;
+  white-space: nowrap;
+}
+
+.c7 {
+  border: none;
+  padding: 0;
+  whitespace: nowrap;
+  height: 43px;
+  font-size: 1.3rem;
+  border: none;
+  vertical-align: middle;
+  padding: 0rem 1.5625rem;
+}
+
+.c10 {
+  height: 53px;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  font-weight: 400;
+  color: rgb(51,55,64);
+  vertical-align: middle;
+  border-collapse: collapse;
+  border-top: 1px solid rgb(241,241,242);
+  padding: 0rem 1.5625rem;
+}
+
+.c0 {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c15 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 2rem 0rem 0rem 0rem;
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+.c3 {
+  min-height: 32rem;
+  padding: 0rem;
+}
+
+.c1 {
+  width: 100%;
+  margin: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: normal;
+  color: rgb(120,126,143);
+}
+
+<div
+  className="c0"
+>
+  <h2>
+    Artists
+  </h2>
+  <p
+    className="c1"
+  >
+    13 entries found
+  </p>
+  <button
+    className="c2"
+    onClick={[Function]}
+  >
+    Filter
+  </button>
+  <div
+    className="c3"
+  >
+    <table
+      className="c4"
+    >
+      <thead
+        className="c5"
+      >
+        <tr
+          className="c6"
+        >
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+              Id
+            </p>
+          </th>
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+              Title
+            </p>
+          </th>
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+              Created at
+            </p>
+          </th>
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+              Updated at
+            </p>
+          </th>
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+              Content avaliable in
+            </p>
+          </th>
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+              State
+            </p>
+          </th>
+          <th
+            className="c7"
+          >
+            <p
+              className="c8"
+            >
+               
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="c6 c9"
+          data-testid="collection-item"
+        >
+          <td
+            className="c10"
+          >
+            1
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              title
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Tuesday, October 12, 2021 13:49
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Friday, October 15, 2021 11:43
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              English (en)
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <svg
+              className="c11"
+              height="20"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+              />
+            </svg>
+          </td>
+          <td
+            className="c10"
+          >
+            <div
+              className="c12"
+            >
+              <button
+                className="c13"
+                data-testid="edit-seo-button-0"
+                onClick={[Function]}
+              >
+                <svg
+                  className="c14"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  width="36"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr
+          className="c6 c9"
+          data-testid="collection-item"
+        >
+          <td
+            className="c10"
+          >
+            2
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              title
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Tuesday, October 12, 2021 13:49
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Friday, October 15, 2021 11:43
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              English (en)
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <svg
+              className="c11"
+              height="20"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+              />
+            </svg>
+          </td>
+          <td
+            className="c10"
+          >
+            <div
+              className="c12"
+            >
+              <button
+                className="c13"
+                data-testid="edit-seo-button-1"
+                onClick={[Function]}
+              >
+                <svg
+                  className="c14"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  width="36"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr
+          className="c6 c9"
+          data-testid="collection-item"
+        >
+          <td
+            className="c10"
+          >
+            3
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              title
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Tuesday, October 12, 2021 13:49
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Friday, October 15, 2021 11:43
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              English (en)
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <svg
+              className="c11"
+              height="20"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+              />
+            </svg>
+          </td>
+          <td
+            className="c10"
+          >
+            <div
+              className="c12"
+            >
+              <button
+                className="c13"
+                data-testid="edit-seo-button-2"
+                onClick={[Function]}
+              >
+                <svg
+                  className="c14"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  width="36"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr
+          className="c6 c9"
+          data-testid="collection-item"
+        >
+          <td
+            className="c10"
+          >
+            4
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              title
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Tuesday, October 12, 2021 13:49
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Friday, October 15, 2021 11:43
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              English (en)
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <svg
+              className="c11"
+              height="20"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+              />
+            </svg>
+          </td>
+          <td
+            className="c10"
+          >
+            <div
+              className="c12"
+            >
+              <button
+                className="c13"
+                data-testid="edit-seo-button-3"
+                onClick={[Function]}
+              >
+                <svg
+                  className="c14"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  width="36"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr
+          className="c6 c9"
+          data-testid="collection-item"
+        >
+          <td
+            className="c10"
+          >
+            5
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              title
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Tuesday, October 12, 2021 13:49
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              Friday, October 15, 2021 11:43
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <p
+              className="c8"
+            >
+              English (en)
+            </p>
+          </td>
+          <td
+            className="c10"
+          >
+            <svg
+              className="c11"
+              height="20"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+              />
+            </svg>
+          </td>
+          <td
+            className="c10"
+          >
+            <div
+              className="c12"
+            >
+              <button
+                className="c13"
+                data-testid="edit-seo-button-4"
+                onClick={[Function]}
+              >
+                <svg
+                  className="c14"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  width="36"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    className="c15"
+  >
+    <div>
+      1, 2
+    </div>
+  </div>
+</div>
+`;

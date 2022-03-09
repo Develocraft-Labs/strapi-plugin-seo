@@ -1,0 +1,674 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SNAP TESTING PREVIEW COMPONENT Should Render Successfully 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c29 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c31 {
+  padding-top: 2rem;
+  margin-left: -2rem;
+  margin-top: -2rem;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  background-color: transparent;
+}
+
+.c31 > * {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 300px;
+}
+
+.c3 {
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+
+.c8 {
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px #e3e9f3;
+}
+
+.c24 {
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px #e3e9f3;
+}
+
+.c22 {
+  height: 2rem;
+  width: 2rem;
+}
+
+.c23 {
+  color: black;
+  overflow-wrap: break-word;
+}
+
+.c21 {
+  color: gray;
+  font-size: 1.4rem;
+}
+
+.c20 {
+  color: #7676fb;
+  font-size: 1.6rem;
+  overflow-wrap: break-word;
+}
+
+.c19 {
+  padding: 0rem 0rem 0rem 1rem;
+  font-size: 1.3rem;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0rem 0rem 1.3rem 0rem;
+  overflow-wrap: break-word;
+}
+
+.c17 {
+  box-shadow: 0 0px 10px #e3e9f3;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 290px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c13 {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.c14 {
+  margin: 0;
+  padding: 0rem 0.5rem;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 0rem;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.c16 {
+  height: 15rem;
+}
+
+.c11 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem 0rem 2rem 0rem;
+}
+
+.c10 {
+  font-size: 1.5rem;
+  padding: 2rem 0rem 0rem 0rem;
+}
+
+.c9 {
+  font-weight: 400;
+}
+
+.c32 {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-bottom: 1.8rem;
+}
+
+.c33 {
+  background-color: white;
+  padding-bottom: 1.8rem;
+  padding-top: 1.5rem;
+  width: 100%;
+}
+
+.c33 .monaco-editor span {
+  font-family: "Droid Sans Mono","monospace",monospace, "Droid Sans Fallback";
+}
+
+.c33 .monaco-editor div {
+  font-family: "Droid Sans Mono","monospace",monospace, "Droid Sans Fallback";
+}
+
+.c30 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background-color: white;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 {
+  width: 100%;
+  margin: 0px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: normal;
+  color: rgb(120,126,143);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c27 {
+  height: 1.8rem;
+  width: 1.5rem;
+  margin-right: 1rem;
+  fill: rgb(246,77,10);
+}
+
+.c5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0px 15px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: 0px;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  margin-left: 1rem;
+  margin-right: 0px;
+  min-width: 150px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: rgb(255,255,255);
+  background-color: rgb(109,187,26);
+  border: 1px solid rgb(109,187,26);
+}
+
+.c5:disabled {
+  color: rgb(180,182,186);
+  background-color: rgb(233,234,235);
+  border: 1px solid rgb(233,234,235);
+}
+
+.c26 {
+  color: rgb(246,77,10);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-pack: normal;
+  -webkit-justify-content: normal;
+  -ms-flex-pack: normal;
+  justify-content: normal;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  line-height: 22px;
+  width: 100%;
+  margin-left: 0.2rem;
+  padding: 7px 20px;
+}
+
+.c25 + .c25 {
+  border-top: 1px solid #f6f6f6;
+}
+
+.c28 {
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px #e3e9f3;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  -webkit-flex: 7;
+  -ms-flex: 7;
+  flex: 7;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+
+.c7 > * + * {
+  margin-top: 2rem;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  position: relative;
+  margin-left: -2rem;
+}
+
+.c6 > * {
+  margin-left: 2rem;
+}
+
+.c2 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1.5rem 0rem 3rem 0rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width:768px) {
+  .c31 {
+    margin-left: 0;
+  }
+
+  .c31 > * {
+    margin-left: 0;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width:1440px) {
+  .c6 {
+    -webkit-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    margin-left: 0rem;
+    margin-top: -2rem;
+  }
+
+  .c6 > * {
+    margin-left: 0rem;
+    margin-top: 2rem;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1 c2"
+  >
+    <div
+      className="c0"
+    >
+      <div
+        className="c0 c3"
+      >
+        <h2
+          data-testid="resource-title"
+        >
+          Title
+        </h2>
+        <h3
+          className="c4"
+          data-testid="resource-collection-title"
+        >
+          API ID : Artists
+        </h3>
+      </div>
+    </div>
+    <button
+      className="c5"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Save
+    </button>
+  </div>
+  <div
+    className="c6"
+  >
+    <div
+      className="c7"
+    >
+      <div
+        className="c0 c8"
+      >
+        <div>
+          <h4
+            className="c9"
+          >
+            Google Preview
+          </h4>
+          <hr />
+          <h6
+            className="c10"
+          >
+            Preview as:
+          </h6>
+          <div
+            className="c1 c11"
+            onChange={[Function]}
+          >
+            <div
+              className="c12"
+            >
+              <input
+                checked={true}
+                className="c13"
+                id="mobile"
+                name="mobile"
+                readOnly={true}
+                type="radio"
+                value="Mobile result"
+              />
+              <label
+                className="c14"
+                htmlFor="Mobile result"
+              >
+                Mobile result
+              </label>
+            </div>
+            <div
+              className="c15"
+            >
+              <input
+                checked={false}
+                className="c13"
+                id="desktop"
+                name="desktop"
+                readOnly={true}
+                type="radio"
+                value="Desktop result"
+              />
+              <label
+                className="c14"
+                htmlFor="Desktop result"
+              >
+                Desktop result
+              </label>
+            </div>
+          </div>
+          <div
+            className="c16"
+          >
+            <div
+              className="c0 c17"
+              data-testid="mobile-preview"
+            >
+              <small
+                className="c18"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-globe"
+                />
+                 
+                <span
+                  className="c19"
+                >
+                  https://www.yourdomain.com/subpage
+                </span>
+              </small>
+              <h3
+                className="c20"
+              >
+                Artists Seo
+              </h3>
+              <div
+                className="c21"
+              >
+                <span>
+                  Mar 9, 2022 
+                </span>
+                <svg
+                  className="c22"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    fill="gray"
+                    height="0.3rem"
+                    rx="2rem"
+                    ry="2rem"
+                    width="0.3rem"
+                    x="0.6rem"
+                    y="0.7rem"
+                  />
+                </svg>
+                <span
+                  className="c23"
+                >
+                  Artists Desc
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c0 c24"
+      >
+        <button
+          className="c25 c26"
+          onClick={[Function]}
+        >
+          <svg
+            className="c27"
+            height="1.1rem"
+            viewBox="0 0 24 24"
+            width="1.1rem"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"
+            />
+            <path
+              d="M9 10h2v8H9zm4 0h2v8h-2z"
+            />
+          </svg>
+          Delete this entry
+        </button>
+      </div>
+    </div>
+    <div
+      className="c28"
+    >
+      <h3>
+        Seo
+      </h3>
+      <div
+        className="c29"
+      >
+        <h3>
+          Locale
+        </h3>
+        <p />
+      </div>
+      <form
+        className="c30"
+        onSubmit={[Function]}
+      >
+        <div
+          className="c1 c31"
+        >
+          <div
+            className="c0 c32"
+            style={Object {}}
+          >
+            <h4>
+              Title
+            </h4>
+            <input />
+          </div>
+          <div
+            className="c0 c32"
+            style={Object {}}
+          >
+            <h4>
+              Meta Description
+            </h4>
+            <input />
+          </div>
+        </div>
+        <div
+          className="c1 c31"
+        >
+          <div
+            className="c0 c32"
+            style={Object {}}
+          >
+            <h4>
+              Og Title
+            </h4>
+            <input />
+          </div>
+          <div
+            className="c0 c32"
+            style={Object {}}
+          >
+            <h4>
+              Og Type
+            </h4>
+            <input />
+          </div>
+        </div>
+        <div
+          className="c1 c31"
+        >
+          <div
+            className="c0 c32"
+            style={Object {}}
+          >
+            <h4>
+              OgUrl
+            </h4>
+            <input />
+          </div>
+          <div
+            className="c0 c32"
+            style={Object {}}
+          >
+            <h4>
+              OgImage
+            </h4>
+            <input />
+          </div>
+        </div>
+        <div
+          className="c0 c33"
+        >
+          <h4>
+            JsonLd
+          </h4>
+          <input />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

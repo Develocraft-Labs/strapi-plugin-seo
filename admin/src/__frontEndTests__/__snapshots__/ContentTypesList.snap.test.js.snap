@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SNAPING TESTING CONTENTTYPELIST COMPONENT Should Render Successfully 1`] = `
+.c1 {
+  list-style: none;
+  padding: 0rem 0rem 2rem 0rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0rem;
+}
+
+<ul
+  className="c0"
+  data-testid="content-types-list"
+>
+  <li
+    className="c1"
+  />
+</ul>
+`;

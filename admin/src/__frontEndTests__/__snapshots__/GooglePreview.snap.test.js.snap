@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SNAP TESTING GOOGLE PREVIEW COMPONENT Should Render Successfully 1`] = `
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c15 {
+  height: 2rem;
+  width: 2rem;
+}
+
+.c16 {
+  color: black;
+  overflow-wrap: break-word;
+}
+
+.c14 {
+  color: gray;
+  font-size: 1.4rem;
+}
+
+.c13 {
+  color: #7676fb;
+  font-size: 1.6rem;
+  overflow-wrap: break-word;
+}
+
+.c12 {
+  padding: 0rem 0rem 0rem 1rem;
+  font-size: 1.3rem;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0rem 0rem 1.3rem 0rem;
+  overflow-wrap: break-word;
+}
+
+.c10 {
+  box-shadow: 0 0px 10px #e3e9f3;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 290px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.c6 {
+  margin: 0;
+  padding: 0rem 0.5rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 0rem;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.c8 {
+  height: 15rem;
+}
+
+.c3 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem 0rem 2rem 0rem;
+}
+
+.c1 {
+  font-size: 1.5rem;
+  padding: 2rem 0rem 0rem 0rem;
+}
+
+.c0 {
+  font-weight: 400;
+}
+
+<div>
+  <h4
+    className="c0"
+  >
+    Google Preview
+  </h4>
+  <hr />
+  <h6
+    className="c1"
+  >
+    Preview as:
+  </h6>
+  <div
+    className="c2 c3"
+    onChange={[Function]}
+  >
+    <div
+      className="c4"
+    >
+      <input
+        checked={true}
+        className="c5"
+        id="mobile"
+        name="mobile"
+        readOnly={true}
+        type="radio"
+        value="Mobile result"
+      />
+      <label
+        className="c6"
+        htmlFor="Mobile result"
+      >
+        Mobile result
+      </label>
+    </div>
+    <div
+      className="c7"
+    >
+      <input
+        checked={false}
+        className="c5"
+        id="desktop"
+        name="desktop"
+        readOnly={true}
+        type="radio"
+        value="Desktop result"
+      />
+      <label
+        className="c6"
+        htmlFor="Desktop result"
+      >
+        Desktop result
+      </label>
+    </div>
+  </div>
+  <div
+    className="c8"
+  >
+    <div
+      className="c9 c10"
+      data-testid="mobile-preview"
+    >
+      <small
+        className="c11"
+      >
+        <i
+          aria-hidden="true"
+          className="fa fa-globe"
+        />
+         
+        <span
+          className="c12"
+        />
+      </small>
+      <h3
+        className="c13"
+      />
+      <div
+        className="c14"
+      >
+        <span>
+          Mar 8, 2022 
+        </span>
+        <svg
+          className="c15"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill="gray"
+            height="0.3rem"
+            rx="2rem"
+            ry="2rem"
+            width="0.3rem"
+            x="0.6rem"
+            y="0.7rem"
+          />
+        </svg>
+        <span
+          className="c16"
+        >
+          meta description
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "seo.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/find/:locale/:seoName",
+      "handler": "seo.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/seos",
+      "handler": "seo.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/update/:id",
+      "handler": "seo.update",
+      "config": {
+        "policies": ["admin::isAuthenticatedAdmin"]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/delete/:id",
+      "handler": "seo.delete",
+      "config": {
+        "policies": ["admin::isAuthenticatedAdmin"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/create",
+      "handler": "seo.create",
+      "config": {
+        "policies": ["admin::isAuthenticatedAdmin"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SNAP TESTING TRANSLATION PICKER COMPONENT Should Render Successfully 1`] = `
+.c0 {
+  margin: 0rem 0rem 1.5rem 0rem;
+  background-color: #ffffff;
+  border-radius: 2px;
+  min-width: 20%;
+  max-width: 20%;
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+<div
+  className="c0"
+>
+  <input />
+</div>
+`;
