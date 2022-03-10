@@ -32,7 +32,7 @@ const TableItems = ({
 }) => {
   return paginatedData().map((item, index) => {
     const { title, id, locale, updated_at, created_at } = item;
-    const doesSeoExist = item && item.seo ? true : false;
+    const doesSeoExist = item && item.seo?.seoName ? true : false;
 
     let createdAt = created_at ? getDate(created_at) : null;
     let updatedAt = updated_at ? getDate(updated_at) : null;
@@ -51,7 +51,7 @@ const TableItems = ({
     };
 
     const getSeoName = () => {
-      return doesSeoExist && item.seo.seoName ? item.seo.seoName : "newSeo";
+      return doesSeoExist ? item.seo.seoName : "newSeo";
     };
 
     const getCollectionTypeId = () => {
