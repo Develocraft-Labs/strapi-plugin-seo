@@ -150,7 +150,7 @@ const Preview = ({
   const [creationMsg, setCreationMsg] = useState("");
   const [saving, setSaving] = useState(false);
   const [active, setActive] = useState(false);
-  const { uid, id } = useParams();
+  const { uid } = useParams();
 
   const seo = useMemo(
     () => ({
@@ -288,7 +288,9 @@ const Preview = ({
               />
             </BoxColumn>
             <BoxColumn padding={0}>
-              <SideButton onClick={() => handleDeleteSeo({ id })}>
+              <SideButton
+                onClick={() => handleDeleteSeo({ id: selectedSeo.id })}
+              >
                 <TrashCan />
                 Delete this entry
               </SideButton>
