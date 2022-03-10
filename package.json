@@ -7,6 +7,11 @@
     "icon": "plug",
     "description": "Add SEO fields to your Collection and Single types."
   },
+  "keywords": [
+    "strapi",
+    "plugin",
+    "seo"
+  ],
   "presentationName": "SEO Plugin",
   "repository": "github:Develocraft-Labs/strapi-plugin-seo",
   "scripts": {
@@ -27,18 +32,6 @@
   "peerDependencies": {
     "strapi": "3.6.x"
   },
-  "author": {
-    "name": "A Strapi developer",
-    "email": "",
-    "url": ""
-  },
-  "maintainers": [
-    {
-      "name": "A Strapi developer",
-      "email": "",
-      "url": ""
-    }
-  ],
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
