@@ -1,0 +1,21 @@
+# Don't check auto-generated stuff into npm
+coverage
+node_modules
+stats.json
+package-lock.json
+yarn-error.log
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+.eslintcache
+
+# Tests/Mocks
+**/__mocks__/**
+**/__tests__/**
+**/__frontEndTests__/**
+testUtils.js
+
+# Husky
+.husky
