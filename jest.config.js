@@ -8,4 +8,7 @@ module.exports = {
     "^.+\\.[t|j]sx?$": "babel-jest",
   },
   setupFilesAfterEnv: ["./jest.setup.js"],
+  moduleNameMapper: {
+    "\\.(css|less)$": "<rootDir>/admin/src/__mocks__/styleMock.js",
+  },
 };

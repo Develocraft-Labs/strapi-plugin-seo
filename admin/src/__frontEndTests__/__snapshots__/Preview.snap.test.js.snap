@@ -191,14 +191,6 @@ exports[`SNAP TESTING PREVIEW COMPONENT Should Render Successfully 1`] = `
   width: 100%;
 }
 
-.c33 .monaco-editor span {
-  font-family: "Droid Sans Mono","monospace",monospace, "Droid Sans Fallback";
-}
-
-.c33 .monaco-editor div {
-  font-family: "Droid Sans Mono","monospace",monospace, "Droid Sans Fallback";
-}
-
 .c30 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -379,6 +371,12 @@ exports[`SNAP TESTING PREVIEW COMPONENT Should Render Successfully 1`] = `
     margin-left: 0;
     min-width: 100%;
     max-width: 100%;
+  }
+}
+
+@media (min-width:1440px) {
+  .c28 {
+    max-width: 70%;
   }
 }
 
