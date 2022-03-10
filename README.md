@@ -1,10 +1,10 @@
-![Screenshot](public/assets/logo.jpg)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/logo.jpg)
 
 # Strapi-SEO-plugin
 
 A plugin for Strapi Headless CMS that provides SEO fields to Single and Collection types.
 
-![Screenshot](public/assets/homeview.png)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/homeview.png)
 
 ### Versions
 
@@ -78,13 +78,13 @@ seo: {
 
    In this case we will create an seo for Careers page.
 
-![Screenshot](public/assets/stepOne.png)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/stepOne.png)
 
 2. Click on the edit button of the resource.
 
 3. Click on Create Relation button ( only visible if relation hasn't been created ) to create a one-way relationship between the seo and the resource.
 
-![Screenshot](public/assets/stepTwo.png)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/stepTwo.png)
 
 4. Enter the seo data in the respective fields:
    - Title;
@@ -95,13 +95,13 @@ seo: {
    - OgUrl;
    - OgImage;
 
-![Screenshot](public/assets/stepThree.png)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/stepThree.png)
 
 5. Click save.
 
 6. If successfully saved, you should see a green checkmark in place of a red cross.
 
-![Screenshot](public/assets/stepFour.png)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/stepFour.png)
 
 ### Seo Edition
 
@@ -111,7 +111,7 @@ seo: {
 
    On this view you can edit the seo data you previously saved.
 
-![Screenshot](public/assets/editView.png)
+![Screenshot](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/editView.png)
 
 **Supported Strapi versions**:
 
