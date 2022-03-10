@@ -8,12 +8,12 @@ const { v4: uuidv4 } = require("uuid");
  */
 
 module.exports = {
-  async findOne({ locale, seoName }) {
+  async findOne({ seoName }) {
     const { pluginName, model } = extractMeta(strapi.plugins);
 
     const entity = await strapi
       .query(model.modelName, pluginName)
-      .findOne({ seoName, locale });
+      .findOne({ seoName });
 
     return entity;
   },

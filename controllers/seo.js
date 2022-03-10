@@ -24,10 +24,9 @@ module.exports = {
   findOne: async (ctx) => {
     try {
       const { params = {} } = ctx;
-      const { locale, seoName } = parseParams(params);
+      const { seoName } = parseParams(params);
 
       return await strapi.plugins["seo"].services["seo"].findOne({
-        locale,
         seoName,
       });
     } catch (e) {
