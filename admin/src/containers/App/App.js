@@ -19,7 +19,7 @@ const App = () => {
         <Switch>
           <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
           <Route
-            path={`/plugins/${pluginId}/:uid/details/:id/:locale/:seoName/:collectionTypeId`}
+            path={`/plugins/${pluginId}/:uid/details/:locale/:seoUid/:collectionTypeId`}
             component={DetailsPage}
             exact
           />

@@ -63,7 +63,7 @@ seo: {
     ogImage: String,
     locale?: String,
     collectionTypeName?: String,
-    seoName?: String,
+    seoUid?: String,
     created_at?: String,
     updated_at?: String
 }

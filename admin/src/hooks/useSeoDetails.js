@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { findSeo } from "../api/seoApi";
 import showErrorNotification from "../utils/errorNotification";
 
-const useSeoDetails = ({ seoName, locale }) => {
+const useSeoDetails = ({ seoUid }) => {
   const [seo, setSeo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (seoName === "newSeo") {
+    if (seoUid === "newSeo") {
       setIsLoading(false);
       return;
     }
     try {
       const fetchSeo = async () => {
-        const seo = await findSeo({ seoName, locale });
+        const seo = await findSeo({ seoUid });
 
         setSeo(seo);
       };

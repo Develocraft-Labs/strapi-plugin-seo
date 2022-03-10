@@ -58,7 +58,7 @@ const MainContent = styled.div`
   /**
     Hacky fix to limit width when monaco isn't resizing correctly
   */
-  @media (min-width: 1440px) {
+  @media (min-width: 1439px) {
     max-width: ${(p) => (p.hasSidebar ? 70 : 100)}%;
   }
 `;
@@ -83,7 +83,7 @@ const Container = styled.div`
   > * {
     margin-left: 2rem;
   }
-  @media (max-width: 1440px) {
+  @media (max-width: 1439px) {
     flex-direction: column-reverse;
     margin-left: 0rem;
     margin-top: -2rem;
@@ -150,7 +150,7 @@ const Preview = ({
   const [creationMsg, setCreationMsg] = useState("");
   const [saving, setSaving] = useState(false);
   const [active, setActive] = useState(false);
-  const { uid, id } = useParams();
+  const { uid } = useParams();
 
   const seo = useMemo(
     () => ({
@@ -165,7 +165,7 @@ const Preview = ({
       locale: selectedSeo?.locale || locale,
       collectionTypeName:
         selectedSeo?.collectionTypeName || getSeoCollectionTypeName(resource),
-      seoName: selectedSeo?.seoName,
+      seoUid: selectedSeo?.seoUid,
     }),
     [
       selectedSeo,
@@ -288,7 +288,9 @@ const Preview = ({
               />
             </BoxColumn>
             <BoxColumn padding={0}>
-              <SideButton onClick={() => handleDeleteSeo({ id })}>
+              <SideButton
+                onClick={() => handleDeleteSeo({ id: selectedSeo.id })}
+              >
                 <TrashCan />
                 Delete this entry
               </SideButton>

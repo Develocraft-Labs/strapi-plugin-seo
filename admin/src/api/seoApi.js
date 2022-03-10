@@ -10,8 +10,8 @@ export const createSeo = (seo) =>
     body: seo,
   });
 
-export const findSeo = ({ locale, seoName }) =>
-  request(`/${pluginId}/find/${locale}/${seoName}`, {
+export const findSeo = ({ seoUid }) =>
+  request(`/${pluginId}/find/${seoUid}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
