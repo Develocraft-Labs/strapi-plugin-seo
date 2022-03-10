@@ -83,7 +83,7 @@ const Container = styled.div`
   > * {
     margin-left: 2rem;
   }
-  @media (max-width: 1440px) {
+  @media (max-width: 1439px) {
     flex-direction: column-reverse;
     margin-left: 0rem;
     margin-top: -2rem;
