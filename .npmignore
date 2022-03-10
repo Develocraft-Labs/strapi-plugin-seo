@@ -17,5 +17,8 @@ npm-debug.log
 **/__frontEndTests__/**
 testUtils.js
 
+# Readme images
+images/
+
 # Husky
 .husky
