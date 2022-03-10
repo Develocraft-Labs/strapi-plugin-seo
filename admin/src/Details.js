@@ -25,7 +25,7 @@ const DetailsContainer = styled(Column)`
 `;
 
 const Details = () => {
-  const { uid, locale, seoName, collectionTypeId, id } = useParams();
+  const { uid, locale, seoName, collectionTypeId } = useParams();
   const history = useHistory();
   const resource = useResource(uid, collectionTypeId);
   const { isLoading } = resource;
@@ -37,7 +37,7 @@ const Details = () => {
   const handleSave = useCallback((seo) => {
     selectedSeo.setSeo(seo);
     history.replace(
-      `/plugins/${pluginId}/${uid}/details/${id}/${locale}/${seo.seoName}/${collectionTypeId}`
+      `/plugins/${pluginId}/${uid}/details/${locale}/${seo.seoName}/${collectionTypeId}`
     );
   });
 

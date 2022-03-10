@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import pluginId from "../../pluginId";
 import getDate from "../../utils/getDate";
@@ -22,6 +22,8 @@ const Td = styled.td`
   padding: 0rem 1.5625rem;
 `;
 
+const checkSeoExists = (item) => !!item?.seo?.seoName;
+
 const TableItems = ({
   paginatedData,
   userEnabledLocales,
@@ -30,9 +32,25 @@ const TableItems = ({
   defaultLocale,
   isSingleType,
 }) => {
+  const handleEditSeo = useCallback(
+    (e, item) => {
+      const locale = item.seo?.locale || item?.locale || defaultLocale;
+
+      if (!e.target.href) {
+        e.preventDefault();
+
+        history.push({
+          pathname: `/plugins/${pluginId}/${
+            isSingleType ? item?.uid : uid
+          }/details/${locale}/${item.seo?.seoName || "newSeo"}/${item.id}`,
+        });
+      }
+    },
+    [isSingleType, uid, history, defaultLocale]
+  );
   return paginatedData().map((item, index) => {
     const { title, id, locale, updated_at, created_at } = item;
-    const doesSeoExist = item && item.seo ? true : false;
+    const doesSeoExist = checkSeoExists(item);
 
     let createdAt = created_at ? getDate(created_at) : null;
     let updatedAt = updated_at ? getDate(updated_at) : null;
@@ -40,42 +58,6 @@ const TableItems = ({
     const localeName = locale
       ? getLocaleName(userEnabledLocales, locale)
       : getLocaleName(userEnabledLocales, defaultLocale);
-
-    const getLocale = () => {
-      if (!item.locale) return defaultLocale;
-
-      let localeString = item.locale;
-      if (item && item.seo && item.seo.locale) localeString = item.seo.locale;
-
-      return localeString;
-    };
-
-    const getSeoName = () => {
-      return doesSeoExist && item.seo.seoName ? item.seo.seoName : "newSeo";
-    };
-
-    const getCollectionTypeId = () => {
-      return item && item.id;
-    };
-
-    const getSeoId = () => {
-      return doesSeoExist && item.seo.id ? item.seo.id : 1;
-    };
-    const getUid = () => {
-      return item && item.uid;
-    };
-
-    const handleEditSeo = (e) => {
-      if (!e.target.href) {
-        e.preventDefault();
-
-        history.push({
-          pathname: `/plugins/${pluginId}/${
-            isSingleType ? getUid() : uid
-          }/details/${getSeoId()}/${getLocale()}/${getSeoName()}/${getCollectionTypeId()}`,
-        });
-      }
-    };
 
     return (
       <ItemRow key={`${id}-${item.uid}`} data-testid="collection-item">
@@ -94,7 +76,10 @@ const TableItems = ({
         </Td>
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
-          <TableActions handleEdit={handleEditSeo} index={index} />
+          <TableActions
+            handleEdit={(e) => handleEditSeo(e, item)}
+            index={index}
+          />
         </Td>
       </ItemRow>
     );
