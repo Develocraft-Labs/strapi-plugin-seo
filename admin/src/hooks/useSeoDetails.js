@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { findSeo } from "../api/seoApi";
 import showErrorNotification from "../utils/errorNotification";
 
-const useSeoDetails = ({ seoName, locale }) => {
+const useSeoDetails = ({ seoName }) => {
   const [seo, setSeo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,7 +13,7 @@ const useSeoDetails = ({ seoName, locale }) => {
     }
     try {
       const fetchSeo = async () => {
-        const seo = await findSeo({ seoName, locale });
+        const seo = await findSeo({ seoName });
 
         setSeo(seo);
       };
