@@ -1,10 +1,10 @@
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/logo.jpg?raw=true)
+![Develocraft](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/logo.jpg?raw=true)
 
 # Strapi-SEO-plugin
 
 A plugin for Strapi Headless CMS that provides SEO fields to Single and Collection types.
 
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/homeview.png?raw=true)
+![Seo plugin home view](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/homeview.png?raw=true)
 
 ### Versions
 
@@ -78,13 +78,13 @@ seo: {
 
    In this case we will create an seo for Careers page.
 
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepOne.png?raw=true)
+![Seo creation step one](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepOne.png?raw=true)
 
 2. Click on the edit button of the resource.
 
 3. Click on Create Relation button ( only visible if relation hasn't been created ) to create a one-way relationship between the seo and the resource.
 
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepTwo.png?raw=true)
+![Seo creation step two](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepTwo.png?raw=true)
 
 4. Enter the seo data in the respective fields:
    - Title;
@@ -95,13 +95,13 @@ seo: {
    - OgUrl;
    - OgImage;
 
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepThree.png?raw=true)
+![Seo creation step three](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepThree.png?raw=true)
 
 5. Click save.
 
 6. If successfully saved, you should see a green checkmark in place of a red cross.
 
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepFour.png?raw=true)
+![Seo creation step four](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/stepFour.png?raw=true)
 
 ### Seo Edition
 
@@ -111,7 +111,7 @@ seo: {
 
    On this view you can edit the seo data you previously saved.
 
-![alt text](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/editView.png?raw=true)
+![Seo edition view](https://github.com/Develocraft-Labs/strapi-plugin-seo/blob/main/public/assets/editView.png?raw=true)
 
 **Supported Strapi versions**:
 
