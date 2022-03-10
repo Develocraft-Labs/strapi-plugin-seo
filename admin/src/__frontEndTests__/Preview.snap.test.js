@@ -72,6 +72,15 @@ jest.mock("../containers/LocaleContextProvider/LocaleContextProvider.js", () =>
 );
 
 describe("SNAP TESTING PREVIEW COMPONENT", () => {
+  beforeAll(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date("2022-03-09"));
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   const { selectedSeo, refreshOptions, handleDeleteSeo } =
     previewComponentTestData;
   it("Should Render Successfully", () => {
