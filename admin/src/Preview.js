@@ -165,7 +165,7 @@ const Preview = ({
       locale: selectedSeo?.locale || locale,
       collectionTypeName:
         selectedSeo?.collectionTypeName || getSeoCollectionTypeName(resource),
-      seoName: selectedSeo?.seoName,
+      seoUid: selectedSeo?.seoUid,
     }),
     [
       selectedSeo,

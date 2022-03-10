@@ -22,7 +22,7 @@ const Td = styled.td`
   padding: 0rem 1.5625rem;
 `;
 
-const checkSeoExists = (item) => !!item?.seo?.seoName;
+const checkSeoExists = (item) => !!item?.seo?.seoUid;
 
 const TableItems = ({
   paginatedData,
@@ -42,7 +42,7 @@ const TableItems = ({
         history.push({
           pathname: `/plugins/${pluginId}/${
             isSingleType ? item?.uid : uid
-          }/details/${locale}/${item.seo?.seoName || "newSeo"}/${item.id}`,
+          }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`,
         });
       }
     },

@@ -10,7 +10,7 @@
     },
     {
       "method": "GET",
-      "path": "/find/:seoName",
+      "path": "/find/:seoUid",
       "handler": "seo.findOne",
       "config": {
         "policies": []

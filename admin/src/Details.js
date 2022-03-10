@@ -25,12 +25,12 @@ const DetailsContainer = styled(Column)`
 `;
 
 const Details = () => {
-  const { uid, locale, seoName, collectionTypeId } = useParams();
+  const { uid, locale, seoUid, collectionTypeId } = useParams();
   const history = useHistory();
   const resource = useResource(uid, collectionTypeId);
   const { isLoading } = resource;
 
-  const selectedSeo = useSeoDetails({ seoName });
+  const selectedSeo = useSeoDetails({ seoUid });
   const handleBackButton = () => {
     history.push("/plugins/seo");
   };
@@ -38,7 +38,7 @@ const Details = () => {
     (seo) => {
       selectedSeo.setSeo(seo);
       history.replace(
-        `/plugins/${pluginId}/${uid}/details/${locale}/${seo.seoName}/${collectionTypeId}`
+        `/plugins/${pluginId}/${uid}/details/${locale}/${seo.seoUid}/${collectionTypeId}`
       );
     },
     [locale, selectedSeo, uid, collectionTypeId, history]

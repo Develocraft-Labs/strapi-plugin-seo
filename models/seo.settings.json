@@ -63,7 +63,7 @@
       "configurable": false,
       "required": true
     },
-    "seoName": {
+    "seoUid": {
       "type": "string",
       "configurable": false,
       "required": true
