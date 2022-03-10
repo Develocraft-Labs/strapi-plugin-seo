@@ -19,6 +19,7 @@
     "test:watch": "yarn run test --watch",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --ext .js,.jsx --fix",
+    "prepublishOnly": "yarn run lint && yarn run test",
     "prepare": "husky install"
   },
   "dependencies": {

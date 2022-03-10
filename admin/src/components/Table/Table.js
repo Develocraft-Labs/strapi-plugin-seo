@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 import TableFilter from "./TableFilter";
 import { useHistory } from "react-router-dom";
@@ -108,6 +108,12 @@ const Table = ({
     },
     [setPage]
   );
+
+  useEffect(() => {
+    setFilterValue("");
+    setFilteredSeos(seos.fullResults);
+    setPage(1);
+  }, [seos.fullResults]);
 
   const getPaginatedData = () => {
     // Start from 0
