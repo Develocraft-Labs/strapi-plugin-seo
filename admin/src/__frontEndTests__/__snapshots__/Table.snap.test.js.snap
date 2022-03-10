@@ -25,7 +25,7 @@ exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
 }
 
 .c11 {
-  fill: rgb(109,187,26);
+  fill: rgb(220 86 86);
 }
 
 .c14 {
@@ -298,7 +298,7 @@ exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
               />
             </svg>
           </td>
@@ -384,7 +384,7 @@ exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
               />
             </svg>
           </td>
@@ -470,7 +470,7 @@ exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
               />
             </svg>
           </td>
@@ -556,7 +556,7 @@ exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
               />
             </svg>
           </td>
@@ -642,7 +642,7 @@ exports[`SNAP TESTING TABlE COMPONENT Should Render Successfully 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
               />
             </svg>
           </td>
