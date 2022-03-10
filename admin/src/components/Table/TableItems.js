@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import pluginId from "../../pluginId";
 import getDate from "../../utils/getDate";
@@ -28,26 +28,9 @@ const TableItems = ({
   paginatedData,
   userEnabledLocales,
   uid,
-  history,
   defaultLocale,
   isSingleType,
 }) => {
-  const handleEditSeo = useCallback(
-    (e, item) => {
-      const locale = item.seo?.locale || item?.locale || defaultLocale;
-
-      if (!e.target.href) {
-        e.preventDefault();
-
-        history.push({
-          pathname: `/plugins/${pluginId}/${
-            isSingleType ? item?.uid : uid
-          }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`,
-        });
-      }
-    },
-    [isSingleType, uid, history, defaultLocale]
-  );
   return paginatedData().map((item, index) => {
     const { title, id, locale, updated_at, created_at } = item;
     const doesSeoExist = checkSeoExists(item);
@@ -77,7 +60,9 @@ const TableItems = ({
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
           <TableActions
-            handleEdit={(e) => handleEditSeo(e, item)}
+            editPath={`/plugins/${pluginId}/${
+              isSingleType ? item?.uid : uid
+            }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`}
             index={index}
           />
         </Td>
