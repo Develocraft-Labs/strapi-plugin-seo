@@ -90,10 +90,10 @@ const Table = ({
     (value) => {
       setFilterValue(value);
       setPage(1);
-      const filteredSeos = seos.fullResults.filter((seo) =>{
-        if (!seo.title) return seo
-        return seo.title.toLowerCase().includes(value.toLowerCase())
-    });
+      const filteredSeos = seos.fullResults.filter((seo) => {
+        if (!seo.title) return seo;
+        return seo.title.toLowerCase().includes(value.toLowerCase());
+      });
 
       setFilteredSeos(filteredSeos);
     },
