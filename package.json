@@ -8,6 +8,7 @@
     "description": "Add SEO fields to your Collection and Single types."
   },
   "presentationName": "SEO Plugin",
+  "repository": "github:Develocraft-Labs/strapi-plugin-seo",
   "scripts": {
     "test": "jest --verbose --coverage",
     "test:watch": "yarn run test --watch",
