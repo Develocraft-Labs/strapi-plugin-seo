@@ -42,9 +42,7 @@ const TableItems = ({
         history.push({
           pathname: `/plugins/${pluginId}/${
             isSingleType ? item?.uid : uid
-          }/details/${item.seo?.id ?? 1}/${locale}/${
-            item.seo?.seoName || "newSeo"
-          }/${item.id}`,
+          }/details/${locale}/${item.seo?.seoName || "newSeo"}/${item.id}`,
         });
       }
     },
