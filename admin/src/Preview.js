@@ -58,7 +58,7 @@ const MainContent = styled.div`
   /**
     Hacky fix to limit width when monaco isn't resizing correctly
   */
-  @media (min-width: 1440px) {
+  @media (min-width: 1439px) {
     max-width: ${(p) => (p.hasSidebar ? 70 : 100)}%;
   }
 `;

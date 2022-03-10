@@ -13,7 +13,7 @@ const DesktopWrap = styled.div`
 `;
 
 const PreviewContainer = styled.div`
-  height: 15rem;
+  height: fit-content;
 `;
 
 const ModeList = styled(Row)`
