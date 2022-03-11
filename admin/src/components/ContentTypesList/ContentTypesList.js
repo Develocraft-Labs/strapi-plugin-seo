@@ -25,6 +25,7 @@ const ContentTypesList = ({
   defaultLocale,
   userEnabledLocales,
   isSingleType,
+  settings,
 }) => {
   if (!isValidLength(content)) {
     return null;
@@ -37,10 +38,12 @@ const ContentTypesList = ({
           defaultLocale={defaultLocale}
           userEnabledLocales={userEnabledLocales}
           isSingleType={isSingleType}
+          settings={settings}
         />
       ) : (
         <CollectionTypesListItems
           projectCollectionTypes={content}
+          settings={settings}
           defaultLocale={defaultLocale}
           userEnabledLocales={userEnabledLocales}
         />
@@ -54,16 +57,20 @@ export const SingleTypesListItems = ({
   defaultLocale,
   userEnabledLocales,
   isSingleType,
+  settings,
 }) => {
   const parsedData = useMemo(() => {
     const results = projectCollectionTypes.flatMap((singleType) => {
       const fullResults = singleType.fullResults;
-
+      const setting = settings.find?.(
+        (setting) => setting.uid === singleType.uid
+      );
       if (!isValidLength(fullResults)) {
         return [];
       }
       return fullResults.map((result) => ({
         ...result,
+        title: singleType.title || result[setting?.settings?.mainField],
         uid: singleType.uid,
       }));
     });
@@ -94,6 +101,7 @@ const CollectionTypesListItem = ({
   length,
   userEnabledLocales,
   items,
+  mainField,
   defaultLocale,
 }) => {
   return (
@@ -101,6 +109,7 @@ const CollectionTypesListItem = ({
       {length > 0 && userEnabledLocales ? (
         <Table
           seos={items}
+          mainField={mainField}
           userEnabledLocales={userEnabledLocales}
           uid={uid}
           defaultLocale={defaultLocale}
@@ -114,11 +123,13 @@ const CollectionTypesListItems = ({
   projectCollectionTypes,
   defaultLocale,
   userEnabledLocales,
+  settings,
 }) => {
   return (
     <>
       {projectCollectionTypes.map((items) => {
         const { uid } = items;
+        const setting = settings.find?.((setting) => setting.uid === uid);
         const length = items?.fullResults?.length;
         if (!items) {
           return null;
@@ -128,6 +139,7 @@ const CollectionTypesListItems = ({
             key={uid}
             uid={uid}
             length={length}
+            mainField={setting?.settings?.mainField}
             userEnabledLocales={userEnabledLocales}
             items={items}
             defaultLocale={defaultLocale}
