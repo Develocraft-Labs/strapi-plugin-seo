@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-seo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Add SEO fields to your Collection and Single types.",
   "strapi": {
     "name": "SEO",

@@ -106,7 +106,9 @@ exports[`SNAP TESTING GOOGLE PREVIEW COMPONENT Should Render Successfully 1`] = 
 }
 
 .c8 {
-  height: 15rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c3 {

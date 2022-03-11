@@ -157,7 +157,9 @@ exports[`SNAP TESTING PREVIEW COMPONENT Should Render Successfully 1`] = `
 }
 
 .c16 {
-  height: 15rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c11 {
@@ -374,13 +376,13 @@ exports[`SNAP TESTING PREVIEW COMPONENT Should Render Successfully 1`] = `
   }
 }
 
-@media (min-width:1440px) {
+@media (min-width:1439px) {
   .c28 {
     max-width: 70%;
   }
 }
 
-@media (max-width:1440px) {
+@media (max-width:1439px) {
   .c6 {
     -webkit-flex-direction: column-reverse;
     -ms-flex-direction: column-reverse;
