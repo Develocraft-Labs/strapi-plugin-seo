@@ -34,7 +34,7 @@ const TableItems = ({
   return paginatedData().map((item, index) => {
     const { title, id, updated_at, created_at } = item;
     const doesSeoExist = checkSeoExists(item);
-
+    const isExternalSeo = item?.seo && !doesSeoExist;
     const createdAt = created_at ? getDate(created_at) : null;
     const updatedAt = updated_at ? getDate(updated_at) : null;
     const locale = item?.seo?.locale || item?.locale || defaultLocale;
@@ -56,12 +56,15 @@ const TableItems = ({
         </Td>
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
-          <TableActions
-            editPath={`/plugins/${pluginId}/${
-              isSingleType ? item?.uid : uid
-            }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`}
-            index={index}
-          />
+          {isExternalSeo && <i>External seo</i>}
+          {!isExternalSeo && (
+            <TableActions
+              editPath={`/plugins/${pluginId}/${
+                isSingleType ? item?.uid : uid
+              }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`}
+              index={index}
+            />
+          )}
         </Td>
       </ItemRow>
     );
