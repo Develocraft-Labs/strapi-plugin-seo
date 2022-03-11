@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import pluginId from "../../pluginId";
 import getDate from "../../utils/getDate";
@@ -28,37 +28,17 @@ const TableItems = ({
   paginatedData,
   userEnabledLocales,
   uid,
-  history,
   defaultLocale,
   isSingleType,
 }) => {
-  const handleEditSeo = useCallback(
-    (e, item) => {
-      const locale = item.seo?.locale || item?.locale || defaultLocale;
-
-      if (!e.target.href) {
-        e.preventDefault();
-
-        history.push({
-          pathname: `/plugins/${pluginId}/${
-            isSingleType ? item?.uid : uid
-          }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`,
-        });
-      }
-    },
-    [isSingleType, uid, history, defaultLocale]
-  );
   return paginatedData().map((item, index) => {
-    const { title, id, locale, updated_at, created_at } = item;
+    const { title, id, updated_at, created_at } = item;
     const doesSeoExist = checkSeoExists(item);
 
-    let createdAt = created_at ? getDate(created_at) : null;
-    let updatedAt = updated_at ? getDate(updated_at) : null;
-
-    const localeName = locale
-      ? getLocaleName(userEnabledLocales, locale)
-      : getLocaleName(userEnabledLocales, defaultLocale);
-
+    const createdAt = created_at ? getDate(created_at) : null;
+    const updatedAt = updated_at ? getDate(updated_at) : null;
+    const locale = item?.seo?.locale || item?.locale || defaultLocale;
+    const localeName = getLocaleName(userEnabledLocales, locale);
     return (
       <ItemRow key={`${id}-${item.uid}`} data-testid="collection-item">
         <Td>{id}</Td>
@@ -77,7 +57,9 @@ const TableItems = ({
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
           <TableActions
-            handleEdit={(e) => handleEditSeo(e, item)}
+            editPath={`/plugins/${pluginId}/${
+              isSingleType ? item?.uid : uid
+            }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`}
             index={index}
           />
         </Td>
