@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const useHistoryScroll = () => {
   const history = useHistory();
   useEffect(() => {
-    const unlisten = history.listen((location, action) => {
+    const unlisten = history.listen((_, action) => {
       if (action === "POP") {
         // dont scroll on back
         return;
