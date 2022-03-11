@@ -56,8 +56,8 @@ const buildEnState = async () => {
     const data = await getItems(singleTypes, request);
     const enLocaleData = getEnLocaleData(data).map((enSingleTypeData)=> {
       return {...enSingleTypeData, 
-              fullResults: [enSingleTypeData?.fullResults?.[0]], 
-              results: [enSingleTypeData?.results?.[0]]
+              fullResults: enSingleTypeData?.fullResults?.slice(0,1), 
+              results: enSingleTypeData?.results?.slice(0,1)
       }
     });
     localeSingles = enLocaleData;
