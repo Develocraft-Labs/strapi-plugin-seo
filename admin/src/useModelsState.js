@@ -23,7 +23,8 @@ const getEnLocaleData = (data) => {
       fullResults,
     } = collection;
     const filteredFullResults = fullResults.filter(
-      (result) => !result.seo || result.seo?.locale === "en"
+      (result) =>
+        !result.seo || !result.seo.seoUid || result.seo?.locale === "en"
     );
 
     return {
