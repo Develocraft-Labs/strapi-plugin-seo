@@ -5,7 +5,7 @@ import getDate from "../../utils/getDate";
 import CheckMark from "../../ui/Svgs/Check";
 import Cross from "../../ui/Svgs/Cross";
 import getLocaleName from "../../utils/getLocaleName";
-import TableActions from "./TableActions";
+import TableActions, { TableActionsWrap } from "./TableActions";
 import { Ellipsis } from "../ui/common";
 import styled from "styled-components";
 import { ItemRow } from "./Table.styles";
@@ -56,7 +56,7 @@ const TableItems = ({
         </Td>
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
-          {isExternalSeo && <i>External seo</i>}
+          {isExternalSeo && <TableActionsWrap><i>External seo</i></TableActionsWrap>}
           {!isExternalSeo && (
             <TableActions
               editPath={`/plugins/${pluginId}/${
