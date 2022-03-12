@@ -62,9 +62,7 @@ export const SingleTypesListItems = ({
   const parsedData = useMemo(() => {
     const results = projectCollectionTypes.flatMap((singleType) => {
       const fullResults = singleType.fullResults;
-      const setting = settings.find?.(
-        (setting) => setting.uid === singleType.uid
-      );
+      const setting = settings[singleType.uid];
       if (!isValidLength(fullResults)) {
         return [];
       }
@@ -101,15 +99,29 @@ const CollectionTypesListItem = ({
   length,
   userEnabledLocales,
   items,
-  mainField,
+  settings,
   defaultLocale,
 }) => {
+  const setting = settings[uid];
+  const itemsWithTitle = useMemo(() => {
+    if (!setting?.settings?.mainField) {
+      return items;
+    }
+    return {
+      ...items,
+      fullResults: items.fullResults.map((item) => ({
+        ...item,
+        title: item.title || item[setting?.settings?.mainField],
+      })),
+    };
+  }, [setting, items]);
+
   return (
     <ListElement>
       {length > 0 && userEnabledLocales ? (
         <Table
-          seos={items}
-          mainField={mainField}
+          seos={itemsWithTitle}
+          mainField={setting?.settings?.mainField}
           userEnabledLocales={userEnabledLocales}
           uid={uid}
           defaultLocale={defaultLocale}
@@ -129,8 +141,8 @@ const CollectionTypesListItems = ({
     <>
       {projectCollectionTypes.map((items) => {
         const { uid } = items;
-        const setting = settings.find?.((setting) => setting.uid === uid);
         const length = items?.fullResults?.length;
+
         if (!items) {
           return null;
         }
@@ -139,7 +151,7 @@ const CollectionTypesListItems = ({
             key={uid}
             uid={uid}
             length={length}
-            mainField={setting?.settings?.mainField}
+            settings={settings}
             userEnabledLocales={userEnabledLocales}
             items={items}
             defaultLocale={defaultLocale}
