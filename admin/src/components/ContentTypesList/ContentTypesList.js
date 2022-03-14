@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import Table from "../Table/Table";
 import isValidLength from "../../utils/isValidLength";
+import { useContentTypeSettingsContext } from "../../containers/ContentTypeSettingsContext";
 
 const ListElement = styled.li`
   list-style: none;
@@ -55,15 +56,18 @@ export const SingleTypesListItems = ({
   userEnabledLocales,
   isSingleType,
 }) => {
+  const settings = useContentTypeSettingsContext();
+
   const parsedData = useMemo(() => {
     const results = projectCollectionTypes.flatMap((singleType) => {
       const fullResults = singleType.fullResults;
-
+      const setting = settings[singleType.uid];
       if (!isValidLength(fullResults)) {
         return [];
       }
       return fullResults.map((result) => ({
         ...result,
+        title: singleType.title || result[setting?.settings?.mainField],
         uid: singleType.uid,
       }));
     });
@@ -96,11 +100,27 @@ const CollectionTypesListItem = ({
   items,
   defaultLocale,
 }) => {
+  const settings = useContentTypeSettingsContext();
+  const setting = settings[uid];
+  const itemsWithTitle = useMemo(() => {
+    if (!setting?.settings?.mainField) {
+      return items;
+    }
+    return {
+      ...items,
+      fullResults: items.fullResults.map((item) => ({
+        ...item,
+        title: item.title || item[setting?.settings?.mainField],
+      })),
+    };
+  }, [setting, items]);
+
   return (
     <ListElement>
       {length > 0 && userEnabledLocales ? (
         <Table
-          seos={items}
+          seos={itemsWithTitle}
+          mainField={setting?.settings?.mainField}
           userEnabledLocales={userEnabledLocales}
           uid={uid}
           defaultLocale={defaultLocale}
@@ -120,6 +140,7 @@ const CollectionTypesListItems = ({
       {projectCollectionTypes.map((items) => {
         const { uid } = items;
         const length = items?.fullResults?.length;
+
         if (!items) {
           return null;
         }

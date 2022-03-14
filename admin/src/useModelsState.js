@@ -1,16 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { request } from "strapi-helper-plugin";
-
 import { useLocaleContext } from "./containers/LocaleContextProvider/LocaleContextProvider";
 import createPagination from "./utils/createPagination";
-import getCollectionTypes from "./utils/getCollectionsTypes";
 import getDefaultLocale from "./utils/getDefaultLocale";
-import getSingleTypes from "./utils/getSingleTypes";
 import getItems from "./utils/getItems";
 import { ROUTES } from "./utils/routes";
 import isValidLength from "./utils/isValidLength";
 import showErrorNotification from "./utils/errorNotification";
 import { USER_ENABLED_LOCALES_DUMMY } from "./utils/constants";
+import getContentTypes from "./utils/getContentTypes";
 
 const getEnLocaleData = (data) => {
   return data.map((collection) => {
@@ -39,8 +37,8 @@ const getEnLocaleData = (data) => {
 };
 
 const buildEnState = async () => {
-  const singleTypes = await getSingleTypes();
-  const collectionTypes = await getCollectionTypes();
+  const { collectionTypes, singleTypes } = await getContentTypes();
+
   let localeCollections = [];
   let localeSingles = [];
   let collections = [];
@@ -172,8 +170,7 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }) => {
 
       const defaultLocale = await getDefaultLocale(userEnabledLocales);
 
-      const singleTypes = await getSingleTypes();
-      const collectionTypes = await getCollectionTypes();
+      const { collectionTypes, singleTypes } = await getContentTypes();
 
       if (Array.isArray(collectionTypes) && isValidLength(collectionTypes)) {
         const collections = await getItems(collectionTypes, request);

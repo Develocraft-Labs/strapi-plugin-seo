@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useMemo } from "react";
 
 import TableFilter from "./TableFilter";
 import { useHistory } from "react-router-dom";
@@ -41,9 +41,9 @@ const EntryCount = styled.p`
   color: rgb(120, 126, 143);
 `;
 
-const header = [
+const getHeaders = ({ mainField }) => [
   "Id",
-  "Title",
+  mainField || "Title",
   "Created at",
   "Updated at",
   "Content avaliable in",
@@ -51,10 +51,11 @@ const header = [
   " ",
 ];
 
-const TableHeader = () => {
+const TableHeader = ({ mainField }) => {
+  const headers = useMemo(() => getHeaders({ mainField }), [mainField]);
   return (
     <Cell>
-      {header.map((heading, index) => {
+      {headers.map((heading, index) => {
         return (
           <HeadingCell key={index}>
             <Ellipsis>{heading}</Ellipsis>
@@ -75,6 +76,7 @@ const Table = ({
   uid,
   defaultLocale,
   isSingleType,
+  mainField,
 }) => {
   const [collectionTypeName] = useState(capitalize(seos.collectionName));
   const [filteredSeos, setFilteredSeos] = useState(seos.fullResults);
@@ -91,7 +93,7 @@ const Table = ({
       setFilterValue(value);
       setPage(1);
       const filteredSeos = seos.fullResults.filter((seo) => {
-        if (!seo.title) return seo;
+        if (!seo.title || typeof seo.title !== "string") return seo;
         return seo.title.toLowerCase().includes(value.toLowerCase());
       });
 
@@ -138,7 +140,7 @@ const Table = ({
       <TableWrap>
         <TableComponent>
           <Thead>
-            <TableHeader />
+            <TableHeader mainField={mainField} />
           </Thead>
           <tbody>
             <TableItems
