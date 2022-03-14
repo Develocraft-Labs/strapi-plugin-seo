@@ -10,8 +10,8 @@ const fetchSettings = async (setSettings) => {
   setSettings(keyBy(settings.data, "uid"));
 };
 
-const useCollectionTypeSettings = () => {
-  const [settings, setSettings] = useState(null);
+const useContentTypeSettings = () => {
+  const [settings, setSettings] = useState({});
 
   useEffect(() => {
     fetchSettings(setSettings);
@@ -20,4 +20,4 @@ const useCollectionTypeSettings = () => {
   return settings;
 };
 
-export default useCollectionTypeSettings;
+export default useContentTypeSettings;

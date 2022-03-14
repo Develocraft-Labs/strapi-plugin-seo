@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import Table from "../Table/Table";
 import isValidLength from "../../utils/isValidLength";
+import { useContentTypeSettingsContext } from "../../containers/ContentTypeSettingsContext";
 
 const ListElement = styled.li`
   list-style: none;
@@ -25,7 +26,6 @@ const ContentTypesList = ({
   defaultLocale,
   userEnabledLocales,
   isSingleType,
-  settings,
 }) => {
   if (!isValidLength(content)) {
     return null;
@@ -38,12 +38,10 @@ const ContentTypesList = ({
           defaultLocale={defaultLocale}
           userEnabledLocales={userEnabledLocales}
           isSingleType={isSingleType}
-          settings={settings}
         />
       ) : (
         <CollectionTypesListItems
           projectCollectionTypes={content}
-          settings={settings}
           defaultLocale={defaultLocale}
           userEnabledLocales={userEnabledLocales}
         />
@@ -57,8 +55,9 @@ export const SingleTypesListItems = ({
   defaultLocale,
   userEnabledLocales,
   isSingleType,
-  settings,
 }) => {
+  const settings = useContentTypeSettingsContext();
+
   const parsedData = useMemo(() => {
     const results = projectCollectionTypes.flatMap((singleType) => {
       const fullResults = singleType.fullResults;
@@ -99,9 +98,9 @@ const CollectionTypesListItem = ({
   length,
   userEnabledLocales,
   items,
-  settings,
   defaultLocale,
 }) => {
+  const settings = useContentTypeSettingsContext();
   const setting = settings[uid];
   const itemsWithTitle = useMemo(() => {
     if (!setting?.settings?.mainField) {
@@ -135,7 +134,6 @@ const CollectionTypesListItems = ({
   projectCollectionTypes,
   defaultLocale,
   userEnabledLocales,
-  settings,
 }) => {
   return (
     <>
@@ -151,7 +149,6 @@ const CollectionTypesListItems = ({
             key={uid}
             uid={uid}
             length={length}
-            settings={settings}
             userEnabledLocales={userEnabledLocales}
             items={items}
             defaultLocale={defaultLocale}

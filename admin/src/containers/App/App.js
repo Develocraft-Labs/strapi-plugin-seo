@@ -6,6 +6,7 @@ import pluginId from "../../pluginId";
 import HomePage from "../HomePage/HomePage";
 import DetailsPage from "../DetailsPage/DetailsPage";
 import LocaleContextProvider from "../LocaleContextProvider/LocaleContextProvider";
+import ContentTypeSettingsProvider from "../ContentTypeSettingsContext";
 
 /**
  *
@@ -14,19 +15,21 @@ import LocaleContextProvider from "../LocaleContextProvider/LocaleContextProvide
  */
 const App = () => {
   return (
-    <LocaleContextProvider>
-      <div>
-        <Switch>
-          <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
-          <Route
-            path={`/plugins/${pluginId}/:uid/details/:locale/:seoUid/:collectionTypeId`}
-            component={DetailsPage}
-            exact
-          />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    </LocaleContextProvider>
+    <ContentTypeSettingsProvider>
+      <LocaleContextProvider>
+        <div>
+          <Switch>
+            <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
+            <Route
+              path={`/plugins/${pluginId}/:uid/details/:locale/:seoUid/:collectionTypeId`}
+              component={DetailsPage}
+              exact
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </LocaleContextProvider>
+    </ContentTypeSettingsProvider>
   );
 };
 

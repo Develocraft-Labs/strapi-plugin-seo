@@ -8,7 +8,6 @@ import isValidLength from "./utils/isValidLength";
 import useModelsState from "./useModelsState";
 import { useLocaleContext } from "./containers/LocaleContextProvider/LocaleContextProvider";
 import { BoxColumn, Column } from "./components/ui/common";
-import useCollectionTypeSettings from "./hooks/useCollectionTypeSettings";
 
 const HomeContainer = styled(Column)`
   padding: 18px 30px 66px;
@@ -17,7 +16,6 @@ const HomeContainer = styled(Column)`
 
 const Home = () => {
   const [userEnabledLocales, setUserEnabledLocales] = useState([{}]);
-  const settings = useCollectionTypeSettings();
   const localeContext = useLocaleContext();
   const { isI18nPluginInstalled } = localeContext;
   const [selectedLocale, setSelectedLocale] = useState(
@@ -42,7 +40,7 @@ const Home = () => {
       </HomeContainer>
     );
   }
-  if (!state || state.loading || !settings) {
+  if (!state || state.loading) {
     return <LoadingIndicatorPage />;
   }
   if (isI18nPluginInstalled && !userEnabledLocales) {
@@ -62,7 +60,6 @@ const Home = () => {
           <ContentTypesList
             content={state.localeSingles}
             defaultLocale={state.defaultLocale}
-            settings={settings}
             userEnabledLocales={
               localeContext.userEnabledLocales || userEnabledLocales
             }
@@ -71,7 +68,6 @@ const Home = () => {
         ) : null}
         {state.localeCollections && isValidLength(state.localeCollections) ? (
           <ContentTypesList
-            settings={settings}
             content={state.localeCollections}
             defaultLocale={state.defaultLocale}
             userEnabledLocales={
