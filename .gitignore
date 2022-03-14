@@ -3,10 +3,10 @@ coverage
 node_modules
 stats.json
 package-lock.json
-yarn-error.log
+.eslintcache
 
 # Cruft
 .DS_Store
 npm-debug.log
 .idea
-.eslintcache
+*.log

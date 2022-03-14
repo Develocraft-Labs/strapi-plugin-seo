@@ -1,14 +1,14 @@
 module.exports = {
-  name: "Tests",
+  name: 'Tests',
   testMatch: [
-    "**/__frontEndTests__/?(*.)+(spec|test).js",
-    "**/__tests__/?(*.)+(spec|test).js",
+    '**/__frontEndTests__/?(*.)+(spec|test).js',
+    '**/__tests__/?(*.)+(spec|test).js',
   ],
   transform: {
-    "^.+\\.[t|j]sx?$": "babel-jest",
+    '^.+\\.[t|j]sx?$': 'babel-jest',
   },
-  setupFilesAfterEnv: ["./jest.setup.js"],
+  setupFilesAfterEnv: ['./jest.setup.js'],
   moduleNameMapper: {
-    "\\.(css|less)$": "<rootDir>/admin/src/__mocks__/styleMock.js",
+    '\\.(css|less)$': '<rootDir>/admin/src/__mocks__/styleMock.js',
   },
 };

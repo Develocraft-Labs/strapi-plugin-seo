@@ -1,0 +1,71 @@
+{
+  "info": {
+    "tableName": "seo",
+    "name": "seo",
+    "collectionName": "seo",
+    "singularName": "seo",
+    "pluralName": "seos",
+    "displayName": "SEOS",
+    "description": "A regular content-type",
+    "kind": "collectionType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": "",
+    "configurable": false,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "configurable": false,
+      "required": true
+    },
+    "metaDescription": {
+      "type": "text",
+      "configurable": false,
+      "required": true
+    },
+    "jsonLd": {
+      "type": "json",
+      "configurable": false,
+      "required": true
+    },
+    "ogTitle": {
+      "type": "text",
+      "configurable": false,
+      "required": true
+    },
+    "ogType": {
+      "type": "text",
+      "configurable": false,
+      "required": true
+    },
+    "ogUrl": {
+      "type": "string",
+      "configurable": false,
+      "required": true
+    },
+    "ogImage": {
+      "type": "string",
+      "configurable": false,
+      "required": true
+    },
+    "locale": {
+      "type": "string",
+      "configurable": false,
+      "required": true
+    },
+    "collectionTypeName": {
+      "type": "string",
+      "configurable": false,
+      "required": true
+    },
+    "seoUid": {
+      "type": "string",
+      "configurable": false,
+      "required": true
+    }
+  }
+}
