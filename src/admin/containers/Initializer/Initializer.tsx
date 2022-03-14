@@ -9,7 +9,7 @@ import pluginId from '../../pluginId';
  * Initializer
  *
  */
-const Initializer = ({ updatePlugin }: { updatePlugin: Function }) => {
+function Initializer({ updatePlugin }: { updatePlugin: Function }) {
   const ref = useRef<Function>();
   ref.current = updatePlugin;
 
