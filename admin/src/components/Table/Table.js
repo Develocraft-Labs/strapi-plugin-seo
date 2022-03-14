@@ -93,7 +93,7 @@ const Table = ({
       setFilterValue(value);
       setPage(1);
       const filteredSeos = seos.fullResults.filter((seo) => {
-        if (!seo.title) return seo;
+        if (!seo.title || typeof seo.title !== "string") return seo;
         return seo.title.toLowerCase().includes(value.toLowerCase());
       });
 
