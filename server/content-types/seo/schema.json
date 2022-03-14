@@ -16,6 +16,11 @@
     "configurable": false,
     "draftAndPublish": false
   },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
