@@ -10,3 +10,5 @@ package-lock.json
 npm-debug.log
 .idea
 *.log
+
+build

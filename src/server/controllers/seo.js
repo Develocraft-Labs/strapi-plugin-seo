@@ -5,7 +5,7 @@
  */
 
 // eslint-disable-next-line no-unused-vars
-module.exports = ({ strapi }) => ({
+const seo = ({ strapi }) => ({
   /**
    * Default action.
    *
@@ -21,3 +21,5 @@ module.exports = ({ strapi }) => ({
     });
   },
 });
+
+export default seo;
