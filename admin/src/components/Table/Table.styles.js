@@ -39,6 +39,7 @@ export const HeadingCell = styled.th`
   height: 43px;
   font-size: 1.3rem;
   border: none;
+  text-transform: capitalize;
   vertical-align: middle;
   padding: 0rem 1.5625rem;
 `;

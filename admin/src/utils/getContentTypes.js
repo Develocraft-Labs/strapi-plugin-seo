@@ -1,13 +1,12 @@
-import { get, has } from "lodash";
+import { get, has, partition } from "lodash";
 import { request } from "strapi-helper-plugin";
-
-import { ROUTES } from "./routes";
 import { SINGLETYPE } from "./constants";
+import { ROUTES } from "./routes";
 /**
  * Get projects Content Types and filter down to Single Types.
  * @returns {Array} array of single types.
  */
-const getSingleTypes = async () => {
+const getContentTypes = async () => {
   const response = await request(ROUTES.CONTENTTYPEBUILDER);
   const data = get(response, ["data"], []);
 
@@ -16,14 +15,16 @@ const getSingleTypes = async () => {
     (obj) => !has(obj, "plugin")
   );
 
-  const singleTypes = contentTypes
-    .map((contentType) => {
-      // save only single types
-      if (get(contentType, ["schema", "kind"], "") === SINGLETYPE)
-        return contentType;
-    })
-    .filter((obj) => has(obj, "schema"));
-  return singleTypes;
+  const [singleTypes, collectionTypes] = partition(
+    contentTypes,
+    (item) => item.schema.kind === SINGLETYPE
+  );
+
+  return {
+    singleTypes,
+    collectionTypes,
+    contentTypes,
+  };
 };
 
-export default getSingleTypes;
+export default getContentTypes;
