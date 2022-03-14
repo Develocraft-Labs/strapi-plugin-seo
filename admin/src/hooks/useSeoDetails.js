@@ -9,12 +9,12 @@ const useSeoDetails = ({ seoUid, resource }) => {
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
-  useEffect(()=> {
+  useEffect(() => {
     if (resource?.isLoading) return;
     if (resource?.resourceData?.seo && !resource?.resourceData?.seo?.seoUid) {
       history.push("/plugins/seo");
     }
-  }, [resource])
+  }, [resource]);
 
   useEffect(() => {
     if (seoUid === "newSeo") {
