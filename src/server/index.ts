@@ -3,11 +3,11 @@ import contentTypes from './content-types';
 import services from './services';
 import routes from './routes';
 
-const server = () => ({
+
+
+export = {
   contentTypes,
   services,
   controllers,
   routes,
-});
-
-module.exports = server;
+};
