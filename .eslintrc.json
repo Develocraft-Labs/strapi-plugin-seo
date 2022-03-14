@@ -10,5 +10,11 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "ignorePatterns": [
+    "build/**",
+    "strapi-server.js",
+    "strapi-admin.js",
+    "node_modules/**"
+  ],
   "plugins": ["react"]
 }
