@@ -3,6 +3,7 @@
  */
 import React from "react";
 import renderer from "react-test-renderer";
+import { MemoryRouter } from "react-router";
 
 import Table from "../components/Table/Table";
 import { tableComponentTestData } from "./testData";
@@ -21,13 +22,6 @@ jest.mock("strapi-helper-plugin", () => {
   ));
   return { GlobalPagination: GlobalPagination };
 });
-// mock useParams from react-router
-jest.mock("react-router", () => ({
-  useHistory: jest.fn().mockReturnValue([]),
-  validateInput: () => [],
-  InputErrors: () => null,
-  LoadingIndicatorPage: () => null,
-}));
 
 describe("SNAP TESTING TABlE COMPONENT", () => {
   const {
@@ -41,14 +35,16 @@ describe("SNAP TESTING TABlE COMPONENT", () => {
 
   it("Should Render Successfully", () => {
     const component = renderer.create(
-      <Table
-        seos={seos}
-        handleDeleteSeo={handleDeleteSeo}
-        handleEditSeo={handleEditSeo}
-        userEnabledLocales={userEnabledLocales}
-        uid={uid}
-        defaultLocale={defaultLocale}
-      />
+      <MemoryRouter>
+        <Table
+          seos={seos}
+          handleDeleteSeo={handleDeleteSeo}
+          handleEditSeo={handleEditSeo}
+          userEnabledLocales={userEnabledLocales}
+          uid={uid}
+          defaultLocale={defaultLocale}
+        />
+      </MemoryRouter>
     );
     const tree = component.toJSON();
     expect(component).toBeDefined();

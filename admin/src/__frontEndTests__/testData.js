@@ -15,6 +15,7 @@ export const id = 1,
   updated_at = "2021-10-15T09:43:36.344Z",
   updated_by = { email, firstname, id, isActive: true, lastname },
   seo = {
+    seoUid: "uuid",
     canonical: "https://www.companyA.com/articles",
     created_at: "2021-10-12T11:55:00.595Z",
     created_by: 1,

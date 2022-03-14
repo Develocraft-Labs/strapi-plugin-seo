@@ -8,7 +8,7 @@ A plugin for Strapi Headless CMS that provides SEO fields to Single and Collecti
 
 ### Versions
 
-- v0.1.2
+- v0.1.3
 
 ### 🖐 Requirements
 

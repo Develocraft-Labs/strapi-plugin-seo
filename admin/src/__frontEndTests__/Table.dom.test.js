@@ -6,6 +6,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import Table from "../components/Table/Table";
 import { tableComponentTestData } from "./testData";
+import { MemoryRouter } from "react-router";
 
 // mock GlobalPagination component from strapi-helper-plugin
 jest.mock("strapi-helper-plugin", () => {
@@ -34,10 +35,6 @@ jest.mock("strapi-helper-plugin", () => {
     LoadingIndicatorPage: () => null,
   };
 });
-// mock useParams from react-router
-jest.mock("react-router", () => ({
-  useHistory: jest.fn().mockReturnValue([]),
-}));
 
 jest.mock("../containers/LocaleContextProvider/LocaleContextProvider.js", () =>
   require("../__mocks__/LocaleContextProvider")
@@ -55,14 +52,16 @@ describe("DOM TESTING TABLE COMPONENT", () => {
     } = tableComponentTestData;
 
     render(
-      <Table
-        seos={seos}
-        handleDeleteSeo={handleDeleteSeo}
-        handleEditSeo={handleEditSeo}
-        userEnabledLocales={userEnabledLocales}
-        uid={uid}
-        defaultLocale={defaultLocale}
-      />
+      <MemoryRouter>
+        <Table
+          seos={seos}
+          handleDeleteSeo={handleDeleteSeo}
+          handleEditSeo={handleEditSeo}
+          userEnabledLocales={userEnabledLocales}
+          uid={uid}
+          defaultLocale={defaultLocale}
+        />
+      </MemoryRouter>
     );
   });
   it("Should Render Successfully", () => {
@@ -76,14 +75,16 @@ describe("DOM TESTING TABLE COMPONENT", () => {
     } = tableComponentTestData;
 
     const component = render(
-      <Table
-        seos={seos}
-        handleDeleteSeo={handleDeleteSeo}
-        handleEditSeo={handleEditSeo}
-        userEnabledLocales={userEnabledLocales}
-        uid={uid}
-        defaultLocale={defaultLocale}
-      />
+      <MemoryRouter>
+        <Table
+          seos={seos}
+          handleDeleteSeo={handleDeleteSeo}
+          handleEditSeo={handleEditSeo}
+          userEnabledLocales={userEnabledLocales}
+          uid={uid}
+          defaultLocale={defaultLocale}
+        />
+      </MemoryRouter>
     );
 
     expect(component).toBeDefined();

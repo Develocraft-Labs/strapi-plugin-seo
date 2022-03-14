@@ -56,7 +56,11 @@ const TableItems = ({
         </Td>
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
-          {isExternalSeo && <TableActionsWrap><i>External seo</i></TableActionsWrap>}
+          {isExternalSeo && (
+            <TableActionsWrap>
+              <i>External seo</i>
+            </TableActionsWrap>
+          )}
           {!isExternalSeo && (
             <TableActions
               editPath={`/plugins/${pluginId}/${
