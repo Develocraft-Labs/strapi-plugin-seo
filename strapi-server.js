@@ -1,1 +1,1 @@
-module.exports = require('./build/strapi-server');
+module.exports = require('./build/server');
