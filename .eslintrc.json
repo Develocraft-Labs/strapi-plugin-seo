@@ -19,8 +19,9 @@
       "presets": ["@babel/preset-react"]
     }
   },
-  "plugins": ["react", "jest", "prettier", "react-hooks"],
+  "plugins": ["react"],
   "rules": {
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }
