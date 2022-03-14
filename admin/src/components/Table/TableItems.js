@@ -5,7 +5,7 @@ import getDate from "../../utils/getDate";
 import CheckMark from "../../ui/Svgs/Check";
 import Cross from "../../ui/Svgs/Cross";
 import getLocaleName from "../../utils/getLocaleName";
-import TableActions from "./TableActions";
+import TableActions, { TableActionsWrap } from "./TableActions";
 import { Ellipsis } from "../ui/common";
 import styled from "styled-components";
 import { ItemRow } from "./Table.styles";
@@ -34,7 +34,7 @@ const TableItems = ({
   return paginatedData().map((item, index) => {
     const { title, id, updated_at, created_at } = item;
     const doesSeoExist = checkSeoExists(item);
-
+    const isExternalSeo = item?.seo && !doesSeoExist;
     const createdAt = created_at ? getDate(created_at) : null;
     const updatedAt = updated_at ? getDate(updated_at) : null;
     const locale = item?.seo?.locale || item?.locale || defaultLocale;
@@ -56,12 +56,15 @@ const TableItems = ({
         </Td>
         <Td>{doesSeoExist ? <CheckMark /> : <Cross />}</Td>
         <Td>
-          <TableActions
-            editPath={`/plugins/${pluginId}/${
-              isSingleType ? item?.uid : uid
-            }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`}
-            index={index}
-          />
+          {isExternalSeo && <TableActionsWrap><i>External seo</i></TableActionsWrap>}
+          {!isExternalSeo && (
+            <TableActions
+              editPath={`/plugins/${pluginId}/${
+                isSingleType ? item?.uid : uid
+              }/details/${locale}/${item.seo?.seoUid || "newSeo"}/${item.id}`}
+              index={index}
+            />
+          )}
         </Td>
       </ItemRow>
     );

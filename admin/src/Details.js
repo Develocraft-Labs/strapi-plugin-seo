@@ -30,7 +30,7 @@ const Details = () => {
   const resource = useResource(uid, collectionTypeId);
   const { isLoading } = resource;
 
-  const selectedSeo = useSeoDetails({ seoUid });
+  const selectedSeo = useSeoDetails({ seoUid, resource });
   const handleBackButton = () => {
     history.push("/plugins/seo");
   };

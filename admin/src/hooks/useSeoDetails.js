@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+
 import { findSeo } from "../api/seoApi";
 import showErrorNotification from "../utils/errorNotification";
 
-const useSeoDetails = ({ seoUid }) => {
+const useSeoDetails = ({ seoUid, resource }) => {
   const [seo, setSeo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
+
+  useEffect(()=> {
+    if (resource?.isLoading) return;
+    if (resource?.resourceData?.seo && !resource?.resourceData?.seo?.seoUid) {
+      history.push("/plugins/seo");
+    }
+  }, [resource])
 
   useEffect(() => {
     if (seoUid === "newSeo") {

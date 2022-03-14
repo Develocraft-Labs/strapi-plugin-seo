@@ -23,7 +23,8 @@ const getEnLocaleData = (data) => {
       fullResults,
     } = collection;
     const filteredFullResults = fullResults.filter(
-      (result) => !result.seo || result.seo?.locale === "en"
+      (result) =>
+        !result.seo || !result.seo.seoUid || result.seo?.locale === "en"
     );
 
     return {
@@ -53,7 +54,12 @@ const buildEnState = async () => {
 
   if (Array.isArray(singleTypes) && isValidLength(singleTypes)) {
     const data = await getItems(singleTypes, request);
-    const enLocaleData = getEnLocaleData(data);
+    const enLocaleData = getEnLocaleData(data).map((enSingleTypeData) => {
+      return {...enSingleTypeData, 
+              fullResults: enSingleTypeData?.fullResults?.slice(0,1), 
+              results: enSingleTypeData?.results?.slice(0,1)
+      }
+    });
     localeSingles = enLocaleData;
   }
 
