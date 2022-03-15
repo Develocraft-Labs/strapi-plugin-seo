@@ -1,1 +1,1 @@
-module.exports = require('./build/strapi-admin');
+module.exports = require('./build/admin').default;

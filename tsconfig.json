@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "build",
+    "outDir": "./build",
     "target": "es5",
     "jsx": "react",
     "moduleResolution": "node",
@@ -24,7 +24,6 @@
     "./src/**/*",
   ],
   "exclude": [
-    "tsconfig.json",
     "**/node_modules/**/*",
     "**/build/**/*"
   ]

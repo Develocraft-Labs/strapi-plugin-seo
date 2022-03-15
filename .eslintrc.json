@@ -6,7 +6,7 @@
     "node": true,
     "jest": true
   },
-  "extends": ["airbnb", "airbnb-typescript"],
+  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
