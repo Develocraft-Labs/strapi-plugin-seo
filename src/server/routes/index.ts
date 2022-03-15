@@ -1,10 +1,12 @@
-module.exports = [
+const routes = [
   {
     method: 'GET',
-    path: '/',
+    path: '/hello',
     handler: 'seo.index',
     config: {
       policies: [],
     },
   },
 ];
+
+export default routes;

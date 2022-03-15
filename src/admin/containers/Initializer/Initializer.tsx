@@ -9,12 +9,12 @@ import pluginId from '../../pluginId';
  * Initializer
  *
  */
-function Initializer({ updatePlugin }) {
-  const ref = useRef();
+function Initializer({ updatePlugin }: { updatePlugin: Function }) {
+  const ref = useRef<Function>();
   ref.current = updatePlugin;
 
   useEffect(() => {
-    ref.current(pluginId, 'isReady', true);
+    ref.current?.(pluginId, 'isReady', true);
   }, []);
 
   return null;

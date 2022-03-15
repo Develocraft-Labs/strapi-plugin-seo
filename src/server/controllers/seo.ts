@@ -5,14 +5,14 @@
  */
 
 // eslint-disable-next-line no-unused-vars
-module.exports = ({ strapi }) => ({
+const seo = {
   /**
    * Default action.
    *
    * @return {Object}
    */
 
-  index: async (ctx) => {
+  index: async (ctx: any) => {
     // Add your own logic here.
 
     // Send 200 `ok`
@@ -20,4 +20,6 @@ module.exports = ({ strapi }) => ({
       message: 'ok',
     });
   },
-});
+};
+
+export default seo;

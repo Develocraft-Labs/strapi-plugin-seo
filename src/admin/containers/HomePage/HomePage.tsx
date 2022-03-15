@@ -14,7 +14,7 @@ function HomePage() {
         {pluginId}
         &apos;s HomePage :)
       </h1>
-      <p>Happy coding</p>
+      <p>Happy coding with TypeScript</p>
     </div>
   );
 }

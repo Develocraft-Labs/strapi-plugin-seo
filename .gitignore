@@ -4,9 +4,12 @@ node_modules
 stats.json
 package-lock.json
 .eslintcache
+tsconfig.tsbuildinfo
 
 # Cruft
 .DS_Store
 npm-debug.log
 .idea
 *.log
+
+build/**
