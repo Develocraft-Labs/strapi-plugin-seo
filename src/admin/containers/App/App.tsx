@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // @ts-ignore
 import { NotFound } from '@strapi/helper-plugin';
 // Utils
@@ -17,10 +17,10 @@ import HomePage from '../HomePage/HomePage';
 function App() {
   return (
     <div>
-      <Switch>
-        <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
-        <Route component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route path={`/plugins/${pluginId}`} element={HomePage} />
+        <Route element={NotFound} />
+      </Routes>
     </div>
   );
 }

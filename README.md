@@ -9,3 +9,8 @@ This project uses typescript to make it work with strapi it needs to be compiled
 1. Run `npm` or `yarn`
 2. Run `npm run watch` or `yarn watch`
 3. Start strapi server
+
+### Branches
+
+main: strapi-v4
+dev: strapi-v4-dev
