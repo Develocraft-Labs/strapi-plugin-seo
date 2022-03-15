@@ -1,12 +1,12 @@
-import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import PluginIcon from './icon';
+import strapiCfg from '../strapi-config';
 
-const pluginDescription = pluginPkg.strapi.description || pluginPkg.description;
-const { name } = pluginPkg.strapi;
+const pluginDescription = strapiCfg.description;
+const { name } = strapiCfg;
 
 export default {
-  register(app) {
+  register(app: any) {
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
