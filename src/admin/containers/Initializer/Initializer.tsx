@@ -9,7 +9,7 @@ import pluginId from '../../pluginId';
  * Initializer
  *
  */
-function Initializer({ updatePlugin }: { updatePlugin: Function }) {
+const Initializer = ({ updatePlugin }: { updatePlugin: Function }) => {
   const ref = useRef<Function>();
   ref.current = updatePlugin;
 
@@ -18,7 +18,7 @@ function Initializer({ updatePlugin }: { updatePlugin: Function }) {
   }, []);
 
   return null;
-}
+};
 
 Initializer.propTypes = {
   updatePlugin: PropTypes.func.isRequired,

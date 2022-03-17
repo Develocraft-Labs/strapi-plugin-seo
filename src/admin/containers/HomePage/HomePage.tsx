@@ -1,22 +1,29 @@
-import React, { memo } from 'react';
+import React, { memo, FC } from 'react';
+// @ts-ignore
+// import { PluginHeader } from '@strapi/helper-plugin';
 
-import pluginId from '../../pluginId';
+// import pluginCfg from '../../../pluginPkg-config';
+// import pluginId from '../../pluginId';
+import Home from '../../Home';
 
 /*
  *
  * HomePage
  *
  */
-function HomePage() {
-  return (
-    <div>
-      <h1>
-        {pluginId}
-        &apos;s HomePage :)
-      </h1>
-      <p>Happy coding with TypeScript</p>
-    </div>
-  );
-}
+const HomePage: FC = () => (
+  <div>
+    <Home />
+  </div>
+);
 
 export default memo(HomePage);
+
+/*
+continue from here check strapi design system.
+ <PluginHeader
+      title={pluginCfg.presentationName}
+      description={pluginCfg.description}
+      titleId={pluginId}
+    />
+*/
