@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/indent */
+
 import { useCallback, useEffect, useState } from 'react';
 // @ts-ignore
 import { request } from '@strapi/helper-plugin';
@@ -11,9 +14,12 @@ import isValidLength from '../utils/isValidLength';
 import showErrorNotification from '../utils/showErrorNotification';
 import { USER_ENABLED_LOCALES_DUMMY } from '../utils/constants';
 import getContentTypes from '../utils/getContentTypes';
+import { ILocale } from '../interfaces/Locales';
+import { IContentType } from '../interfaces/ContentTypeItem';
+import { IPlugin } from '../interfaces/Plugins';
 
-const getEnLocaleData = (data: any) =>
-  data.map((collection: any) => {
+const getEnLocaleData = (data: IContentType[]) =>
+  data.map((collection) => {
     const {
       collectionName,
       isI18nEnabled,
@@ -23,7 +29,7 @@ const getEnLocaleData = (data: any) =>
       fullResults,
     } = collection;
     const filteredFullResults = fullResults.filter(
-      (result: any) =>
+      (result) =>
         !result.seo || !result.seo.seoUid || result.seo?.locale === 'en'
     );
 
@@ -40,9 +46,10 @@ const getEnLocaleData = (data: any) =>
 const buildEnState = async () => {
   const { collectionTypes, singleTypes } = await getContentTypes();
 
-  let localeCollections = [];
-  let localeSingles = [];
-  let collections = [];
+  let localeCollections: IContentType[] = [];
+  let localeSingles: IContentType[] = [];
+  let collections: IContentType[] = [];
+
   if (isValidLength(collectionTypes)) {
     const data = await getItems(collectionTypes, request);
     const enLocaleData = getEnLocaleData(data);
@@ -53,7 +60,7 @@ const buildEnState = async () => {
 
   if (isValidLength(singleTypes)) {
     const data = await getItems(singleTypes, request);
-    const enLocaleData = getEnLocaleData(data).map((enSingleTypeData: any) => ({
+    const enLocaleData = getEnLocaleData(data).map((enSingleTypeData) => ({
       ...enSingleTypeData,
       fullResults: enSingleTypeData?.fullResults?.slice(0, 1),
       results: enSingleTypeData?.results?.slice(0, 1),
@@ -61,7 +68,6 @@ const buildEnState = async () => {
     localeSingles = enLocaleData;
   }
 
-  // make selectedLocale and error optional in interface
   return {
     collections,
     collectionTypes,
@@ -72,6 +78,15 @@ const buildEnState = async () => {
   };
 };
 
+interface IGetLocaleItems {
+  collection: IContentType;
+  collectionName: string;
+  isI18nEnabled: boolean;
+  uid: string;
+  selectedLocale: string;
+  defaultLocale: string;
+}
+
 const getLocaleItems = async ({
   collection,
   isI18nEnabled,
@@ -79,18 +94,14 @@ const getLocaleItems = async ({
   collectionName,
   selectedLocale,
   defaultLocale,
-}: any) => {
+}: IGetLocaleItems): Promise<IContentType> => {
   if (!isI18nEnabled && !selectedLocale) return collection;
   if (!isI18nEnabled && selectedLocale === defaultLocale) return collection;
-
-  if (!isI18nEnabled) return null;
-
   if (collection.fullResults[0].locale === selectedLocale) return collection;
+  // if (!isI18nEnabled) return null;
 
   const fullResponse = await request(
-    `${ROUTES.CONTENT_MANAGER}/${uid}?_locale=${
-      selectedLocale || defaultLocale
-    }`
+    `${ROUTES.CONTENT_MANAGER}/${uid}?locale=${selectedLocale || defaultLocale}`
   );
 
   return {
@@ -102,39 +113,23 @@ const getLocaleItems = async ({
   };
 };
 
-const getLocaleSingles = async (
-  singles: any,
-  { selectedLocale, defaultLocale }: any
+interface IGetContentTypeLocaleCollections {
+  selectedLocale: string;
+  defaultLocale: string;
+}
+
+const getContentTypeLocaleItems = async (
+  contentTypeItems: IContentType[],
+  { selectedLocale, defaultLocale }: IGetContentTypeLocaleCollections
 ) =>
   Promise.all(
-    singles.map(async (collection: any) => {
-      const { uid, isI18nEnabled, collectionName } = collection;
-      const length = collection?.fullResults?.length;
-      if (length === 0) return collection;
+    contentTypeItems.map(async (contentTypeItem: IContentType) => {
+      const { uid, isI18nEnabled, collectionName } = contentTypeItem;
+      const length = contentTypeItem?.fullResults?.length;
+      if (length === 0) return contentTypeItem;
 
       return getLocaleItems({
-        collection,
-        isI18nEnabled,
-        uid,
-        collectionName,
-        selectedLocale,
-        defaultLocale,
-      });
-    })
-  );
-// remember to set correct types from any
-const getLocaleCollections = async (
-  collections: any,
-  { selectedLocale, defaultLocale }: any
-) =>
-  Promise.all(
-    collections.map(async (collection: any) => {
-      const { uid, isI18nEnabled, collectionName } = collection;
-      const length = collection?.fullResults?.length;
-      if (length === 0) return collection;
-
-      return getLocaleItems({
-        collection,
+        collection: contentTypeItem,
         isI18nEnabled,
         uid,
         collectionName,
@@ -144,9 +139,28 @@ const getLocaleCollections = async (
     })
   );
 
-const useModelsState = ({ selectedLocale, setUserEnabledLocales }: any) => {
+interface IUseStateModel {
+  selectedLocale: string;
+  setUserEnabledLocales: React.Dispatch<React.SetStateAction<ILocale[]>>;
+}
+
+interface IModelState {
+  loading?: boolean;
+  collections?: IContentType[];
+  defaultLocale?: string;
+  selectedLocale?: string;
+  localeCollections?: IContentType[];
+  localeSingles?: IContentType[];
+  error?: null;
+  collectionTypes?: IPlugin[];
+}
+
+const useModelsState = ({
+  selectedLocale,
+  setUserEnabledLocales,
+}: IUseStateModel) => {
   const { isI18nPluginInstalled, userEnabledLocales } = useLocaleContext();
-  const [state, setState] = useState<any>({
+  const [state, setState] = useState<IModelState>({
     loading: true,
     collections: [],
     defaultLocale: '',
@@ -165,21 +179,9 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }: any) => {
         return;
       }
 
-      let collections: {
-        uid: any;
-        results: any;
-        pagination: {
-          page: any;
-          total: any;
-          pageSize: number;
-          pageCount: number;
-        };
-        collectionName: any;
-        fullResults: any;
-        isI18nEnabled: boolean;
-      }[] = [];
-      let localeCollections = [];
-      let localeSingles = [];
+      let collections: IContentType[] = [];
+      let localeCollections: IContentType[] = [];
+      let localeSingles: IContentType[] = [];
 
       const defaultLocale = await getDefaultLocale(userEnabledLocales);
 
@@ -188,7 +190,7 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }: any) => {
       if (isValidLength(collectionTypes)) {
         collections = await getItems(collectionTypes, request);
         localeCollections = (
-          await getLocaleCollections(collections, {
+          await getContentTypeLocaleItems(collections, {
             defaultLocale,
             selectedLocale,
           })
@@ -198,7 +200,10 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }: any) => {
       if (isValidLength(singleTypes)) {
         const singles = await getItems(singleTypes, request);
         localeSingles = (
-          await getLocaleSingles(singles, { defaultLocale, selectedLocale })
+          await getContentTypeLocaleItems(singles, {
+            defaultLocale,
+            selectedLocale,
+          })
         ).filter(Boolean);
       }
       setState({
@@ -214,14 +219,12 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }: any) => {
       setState({ loading: false, error });
       showErrorNotification(error.message);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocale, isI18nPluginInstalled]);
 
   useEffect(() => {
     getModels();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocale, isI18nPluginInstalled]);
-  console.log('state', state);
+
   return state;
 };
 

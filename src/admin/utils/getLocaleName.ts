@@ -7,9 +7,9 @@ interface IGetLocaleName {
 
 /**
  * Get local name from locales object.
- * @param {Array} userEnabledLocales - Locales enabled in project.
- * @param {String} translationCode - Locale code.
- * @returns {String} Locale name.
+ * @param userEnabledLocales - Locales enabled in project.
+ * @param translationCode - Locale code.
+ * @returns  Locale name.
  */
 const getLocaleName = ({
   userEnabledLocales,

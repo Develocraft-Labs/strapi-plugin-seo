@@ -1,6 +1,8 @@
 import React, { useState, useCallback, FC } from 'react';
 // @ts-ignore
 import { ErrorFallback, LoadingIndicatorPage } from '@strapi/helper-plugin';
+// @ts-ignore
+import { Box, Flex } from '@strapi/design-system';
 
 import TranslationPicker from './components/TranslationPicker/TranslationPicker';
 import { useLocaleContext } from './containers/LocaleContextProvider/LocaleContextProvider';
@@ -9,7 +11,7 @@ import useModelsState from './hooks/useModelsState';
 
 const Home: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userEnabledLocales, setUserEnabledLocales] = useState<ILocale>();
+  const [userEnabledLocales, setUserEnabledLocales] = useState<ILocale[]>([]);
   const localeContext = useLocaleContext();
   const { isI18nPluginInstalled } = localeContext;
   const [selectedLocale, setSelectedLocale] = useState(
@@ -32,14 +34,16 @@ const Home: FC = () => {
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      {!!isI18nPluginInstalled && (
-        <TranslationPicker
-          handleTranslation={handleTranslation}
-          value={selectedLocale}
-        />
-      )}
-    </>
+    <Box>
+      <Flex direction="column">
+        {!!isI18nPluginInstalled && (
+          <TranslationPicker
+            handleTranslation={handleTranslation}
+            value={selectedLocale}
+          />
+        )}
+      </Flex>
+    </Box>
   );
 };
 

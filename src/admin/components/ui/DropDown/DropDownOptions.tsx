@@ -7,14 +7,14 @@ import getLocaleName from '../../../utils/getLocaleName';
 import { ILocale } from '../../../interfaces/Locales';
 
 interface IDropDownOptions {
-  avaliableTranslations: any[];
+  avaliableTranslations: string[];
   userEnabledLocales: ILocale[];
 }
 
 /**
  * Create options for drop down.
- * @param {Array} avaliableTranslations - Processed locales using createTranslation function.
- * @param {Array} userEnabledLocales - Locales enabled in project.
+ * @param avaliableTranslations - Processed locales using createTranslation function.
+ * @param  userEnabledLocales - Locales enabled in project.
  * @returns {HTMLOptionsCollection} List of options.
  */
 const DropDownOptions = ({

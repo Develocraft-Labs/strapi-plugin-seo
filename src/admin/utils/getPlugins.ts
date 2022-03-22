@@ -12,7 +12,7 @@ interface IResults {
 }
 /**
  * Get Project's plugins and checks if Strapi's i18n plugin is installed in Project.
- * @returns {Object} Project's plugins and boolean based on Strapi's i18n plugin being installed.
+ * @returns Project's plugins and boolean based on Strapi's i18n plugin being installed.
  */
 const getPlugins = async (): Promise<IResults> => {
   const response = await request(ROUTES.CONTENT_TYPE_BUILDER);

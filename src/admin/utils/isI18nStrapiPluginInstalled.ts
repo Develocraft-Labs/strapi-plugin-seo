@@ -1,5 +1,10 @@
 import { IPlugin } from '../interfaces/Plugins';
 
+/**
+ * Check if i18n plugin is installed in Strapi project.
+ * @param plugins Installed Strapi plugins.
+ * @returns Boolean
+ */
 const isI18nStrapiPluginInstalled = (plugins: IPlugin[]) => {
   let isI18nInstalled = false;
 

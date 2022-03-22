@@ -6,12 +6,12 @@ import { useLocaleContext } from '../../containers/LocaleContextProvider/LocaleC
 import createTranslationHash from '../../utils/createTranslationHash';
 import DropDownOptions from '../ui/DropDown/DropDownOptions';
 
-interface TranslationPickerProps {
+interface ITranslationPicker {
   handleTranslation: (selectedValue: string) => void;
   value: string;
 }
 
-const TranslationPicker: FC<TranslationPickerProps> = ({
+const TranslationPicker: FC<ITranslationPicker> = ({
   handleTranslation,
   value,
 }) => {
@@ -28,11 +28,9 @@ const TranslationPicker: FC<TranslationPickerProps> = ({
   }
 
   return (
-    <div>
-      <Select value={value} onChange={handleTranslation}>
-        {DropDownOptions({ avaliableTranslations, userEnabledLocales })}
-      </Select>
-    </div>
+    <Select value={value} onChange={handleTranslation}>
+      {DropDownOptions({ avaliableTranslations, userEnabledLocales })}
+    </Select>
   );
 };
 

@@ -1,9 +1,11 @@
+import { IPagination } from '../interfaces/ContentTypeItem';
+
 /**
  * Create custom pagination.
  * @param response - Https response
  * @returns  Object.
  */
-const createPagination = (response: any) => {
+const createPagination = (response: any): IPagination => {
   const {
     pagination: { page, total },
   } = response;

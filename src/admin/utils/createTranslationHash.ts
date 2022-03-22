@@ -2,7 +2,7 @@ import { ILocale } from '../interfaces/Locales';
 
 /**
  * Create translation map from project locales.
- * @param {*} locales - Project locales.
+ * @param locales - Project locales.
  * @returns Locales hashmap.
  */
 const createTranslationHash = (locales: ILocale[]) => {

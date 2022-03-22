@@ -4,5 +4,5 @@
  * @returns {Boolean} true | false.
  */
 const isValidLength = (array: any[]) =>
-  array && Array.isArray(array) && array.length && array.length > 0;
+  !!(array && Array.isArray(array) && array.length && array.length > 0);
 export default isValidLength;

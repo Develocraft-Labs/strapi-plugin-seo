@@ -1,8 +1,8 @@
 import React, { memo, FC } from 'react';
 // @ts-ignore
-// import { PluginHeader } from '@strapi/helper-plugin';
+import { BaseHeaderLayout, Box, Flex } from '@strapi/design-system';
 
-// import pluginCfg from '../../../pluginPkg-config';
+import pluginCfg from '../../../pluginPkg-config';
 // import pluginId from '../../pluginId';
 import Home from '../../Home';
 
@@ -12,18 +12,15 @@ import Home from '../../Home';
  *
  */
 const HomePage: FC = () => (
-  <div>
-    <Home />
-  </div>
+  <Box>
+    <Flex direction="column">
+      <BaseHeaderLayout
+        title={`${pluginCfg.presentationName}`}
+        subtitle={`${pluginCfg.description}`}
+      />
+      <Home />
+    </Flex>
+  </Box>
 );
 
 export default memo(HomePage);
-
-/*
-continue from here check strapi design system.
- <PluginHeader
-      title={pluginCfg.presentationName}
-      description={pluginCfg.description}
-      titleId={pluginId}
-    />
-*/

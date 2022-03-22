@@ -1,7 +1,7 @@
 export interface ILocale {
   code: string;
   isDefault: boolean;
-  length: number;
+  length?: number;
   id: number;
   name: string;
 }
