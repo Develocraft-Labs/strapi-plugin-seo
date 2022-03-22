@@ -1,8 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function PluginIcon() {
-  return <FontAwesomeIcon icon="paint-brush" />;
-}
+const PluginIcon = () => <FontAwesomeIcon icon="paint-brush" />;
 
 export default PluginIcon;

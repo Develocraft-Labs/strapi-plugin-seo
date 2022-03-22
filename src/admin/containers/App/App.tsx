@@ -5,7 +5,7 @@
  *
  */
 
-import React from 'react';
+import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 // @ts-ignore
 import { NotFound } from '@strapi/helper-plugin';
@@ -13,16 +13,15 @@ import { NotFound } from '@strapi/helper-plugin';
 import pluginId from '../../pluginId';
 // Containers
 import HomePage from '../HomePage/HomePage';
+import LocalContextProvider from '../LocaleContextProvider/LocaleContextProvider';
 
-function App() {
-  return (
-    <div>
-      <Switch>
-        <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
-        <Route component={NotFound} />
-      </Switch>
-    </div>
-  );
-}
+const App: FC = () => (
+  <LocalContextProvider>
+    <Switch>
+      <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
+      <Route component={NotFound} />
+    </Switch>
+  </LocalContextProvider>
+);
 
 export default App;
