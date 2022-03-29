@@ -34,3 +34,16 @@ export const deleteSeo = ({ id }) =>
       "Content-Type": "application/json",
     },
   });
+
+export const fetchContentTypes = async () => {
+  try {
+    return await request(`/${pluginId}/content-types`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

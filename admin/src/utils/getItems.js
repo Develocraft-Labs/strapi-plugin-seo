@@ -1,37 +1,27 @@
 import isValidLength from "./isValidLength";
-import { ROUTES } from "./routes";
 
 /**
  * Create custom Content Types array of objects from project Content Types.
- * @param {Array} contentArr - Project Content Types.
- * @param {Promise} request - Request method for strapi-helper-plugin package.
+ * @param {Array} contentTypes - Project Content Types.
  * @returns {Array} array of content type items.
  */
-const getItems = async (contentArr, request) => {
+const getItems = async (contentTypes) => {
   const list = [];
-  const length = contentArr.length;
+  const length = contentTypes.length;
 
   if (length > 0) {
     try {
       // get the content type items
       for (let i = 0; i < length; i++) {
-        const uid = contentArr[i].uid || "";
-        const collectionName = contentArr[i].schema.collectionName || "";
-
-        // get full items
-        const fullResponse = await request(`${ROUTES.CONTENTMANGER}/${uid}`);
-        const {
-          pagination: { page, total },
-        } = fullResponse;
-
-        const isI18nEnabled = contentArr[i]?.schema?.pluginOptions?.i18n
-          ? true
-          : false;
-
+        const uid = contentTypes[i].uid || "";
+        const collectionName = contentTypes[i].collectionName || "";
+        const data = contentTypes[i]?.[collectionName];
+        const total = data.length;
+        const isI18nEnabled = contentTypes[i].isI18nEnabled;
         const customResults = [];
 
-        if (fullResponse.results && isValidLength(fullResponse.results))
-          fullResponse.results.forEach((item) => {
+        if (isValidLength(data))
+          data.forEach((item) => {
             customResults.push(
               Object.assign({}, item, { uid, collectionName, isI18nEnabled })
             );
@@ -40,7 +30,7 @@ const getItems = async (contentArr, request) => {
         const pageSize = 5;
         const pageCount = Math.round(total / pageSize);
         const customPagination = {
-          page: page,
+          page: 1,
           total: total,
           pageSize: 5,
           pageCount: pageCount,
