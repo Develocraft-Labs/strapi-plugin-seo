@@ -71,4 +71,14 @@ module.exports = {
       console.log(ctx, e);
     }
   },
+  findAllContentTypes: async (ctx) => {
+    try {
+      const res = await strapi.plugins["seo"].services[
+        "seo"
+      ].findAllContentTypes();
+      return res;
+    } catch (e) {
+      console.log(ctx, e);
+    }
+  },
 };

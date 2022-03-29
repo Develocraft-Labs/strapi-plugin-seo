@@ -47,6 +47,14 @@
       "config": {
         "policies": ["admin::isAuthenticatedAdmin"]
       }
+    },
+    {
+      "method": "GET",
+      "path": "/content-types",
+      "handler": "seo.findAllContentTypes",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

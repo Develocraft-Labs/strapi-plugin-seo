@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import { request } from "strapi-helper-plugin";
+
 import { useLocaleContext } from "./containers/LocaleContextProvider/LocaleContextProvider";
 import createPagination from "./utils/createPagination";
 import getDefaultLocale from "./utils/getDefaultLocale";
 import getItems from "./utils/getItems";
-import { ROUTES } from "./utils/routes";
 import isValidLength from "./utils/isValidLength";
 import showErrorNotification from "./utils/errorNotification";
 import { USER_ENABLED_LOCALES_DUMMY } from "./utils/constants";
-import getContentTypes from "./utils/getContentTypes";
+import { fetchContentTypes } from "./api/seoApi";
 
 const getEnLocaleData = (data) => {
   return data.map((collection) => {
@@ -37,21 +36,28 @@ const getEnLocaleData = (data) => {
 };
 
 const buildEnState = async () => {
-  const { collectionTypes, singleTypes } = await getContentTypes();
+  const fetchedContentTypes = await fetchContentTypes();
 
   let localeCollections = [];
   let localeSingles = [];
   let collections = [];
-  if (Array.isArray(collectionTypes) && isValidLength(collectionTypes)) {
-    const data = await getItems(collectionTypes, request);
+
+  if (
+    Array.isArray(fetchedContentTypes?.collectionTypes) &&
+    isValidLength(fetchedContentTypes?.collectionTypes)
+  ) {
+    const data = await getItems(fetchedContentTypes?.collectionTypes);
     const enLocaleData = getEnLocaleData(data);
 
     collections = enLocaleData;
     localeCollections = enLocaleData;
   }
 
-  if (Array.isArray(singleTypes) && isValidLength(singleTypes)) {
-    const data = await getItems(singleTypes, request);
+  if (
+    Array.isArray(fetchedContentTypes?.singleTypes) &&
+    isValidLength(fetchedContentTypes?.singleTypes)
+  ) {
+    const data = await getItems(fetchedContentTypes?.singleTypes);
     const enLocaleData = getEnLocaleData(data).map((enSingleTypeData) => {
       return {
         ...enSingleTypeData,
@@ -64,7 +70,7 @@ const buildEnState = async () => {
 
   return {
     collections,
-    collectionTypes,
+    collectionTypes: fetchedContentTypes?.collectionTypes,
     loading: false,
     defaultLocale: "en",
     localeCollections,
@@ -72,67 +78,59 @@ const buildEnState = async () => {
   };
 };
 
-const getLocaleItems = async ({
-  collection,
-  isI18nEnabled,
-  uid,
-  collectionName,
-  selectedLocale,
-  defaultLocale,
-}) => {
+const getLocaleItems = async (
+  contentTypesLocales,
+  {
+    collection,
+    isI18nEnabled,
+    uid,
+    collectionName,
+    selectedLocale,
+    defaultLocale,
+  }
+) => {
   if (!isI18nEnabled && !selectedLocale) return collection;
   if (!isI18nEnabled && selectedLocale === defaultLocale) return collection;
 
   if (!isI18nEnabled) return null;
 
-  if (collection.fullResults[0].locale === selectedLocale) return collection;
+  const results = contentTypesLocales
+    .map((contentTypesLocale) => {
+      if (contentTypesLocale?.[`${collectionName}`]) {
+        return contentTypesLocale?.[`${collectionName}`]?.[
+          `locale-${selectedLocale}`
+        ];
+      }
+      return;
+    })
+    .filter(Boolean)
+    .flat(1);
 
-  const fullResponse = await request(
-    `${ROUTES.CONTENTMANGER}/${uid}?_locale=${
-      selectedLocale ? selectedLocale : defaultLocale
-    }`
-  );
+  const pagination = {
+    pagination: { page: 1, total: results.length },
+  };
 
   return {
     uid,
-    pagination: createPagination(fullResponse),
+    pagination: createPagination(pagination),
     collectionName,
-    fullResults: fullResponse.results,
+    fullResults: results,
     isI18nEnabled,
   };
 };
 
-const getLocaleSingles = async (singles, { selectedLocale, defaultLocale }) => {
-  return await Promise.all(
-    singles.map(async (collection) => {
-      const { uid, isI18nEnabled, collectionName } = collection;
-      const length = collection?.fullResults?.length;
-      if (length === 0) return collection;
-
-      const localeItems = getLocaleItems({
-        collection,
-        isI18nEnabled,
-        uid,
-        collectionName,
-        selectedLocale,
-        defaultLocale,
-      });
-      return localeItems;
-    })
-  );
-};
-
-const getLocaleCollections = async (
-  collections,
+const getLocaleContentTypes = async (
+  contentTypes,
+  contentTypesLocales,
   { selectedLocale, defaultLocale }
 ) => {
   return await Promise.all(
-    collections.map(async (collection) => {
+    contentTypes.map(async (collection) => {
       const { uid, isI18nEnabled, collectionName } = collection;
       const length = collection?.fullResults?.length;
       if (length === 0) return collection;
 
-      return getLocaleItems({
+      return getLocaleItems(contentTypesLocales, {
         collection,
         isI18nEnabled,
         uid,
@@ -170,28 +168,47 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }) => {
       let localeSingles = [];
 
       const defaultLocale = await getDefaultLocale(userEnabledLocales);
+      const fetchedContentTypes = await fetchContentTypes();
 
-      const { collectionTypes, singleTypes } = await getContentTypes();
-
-      if (Array.isArray(collectionTypes) && isValidLength(collectionTypes)) {
-        const collections = await getItems(collectionTypes, request);
+      if (
+        Array.isArray(fetchedContentTypes?.collectionTypes) &&
+        isValidLength(fetchedContentTypes?.collectionTypes)
+      ) {
+        const collections = await getItems(
+          fetchedContentTypes?.collectionTypes
+        );
         localeCollections = (
-          await getLocaleCollections(collections, {
-            defaultLocale,
-            selectedLocale,
-          })
+          await getLocaleContentTypes(
+            collections,
+            fetchedContentTypes?.collectionTypesLocales,
+            {
+              defaultLocale,
+              selectedLocale,
+            }
+          )
         ).filter(Boolean);
       }
 
-      if (Array.isArray(singleTypes) && isValidLength(singleTypes)) {
-        const singles = await getItems(singleTypes, request);
+      if (
+        Array.isArray(fetchedContentTypes?.singleTypes) &&
+        isValidLength(fetchedContentTypes?.singleTypes)
+      ) {
+        const singles = await getItems(fetchedContentTypes?.singleTypes);
         localeSingles = (
-          await getLocaleSingles(singles, { defaultLocale, selectedLocale })
+          await getLocaleContentTypes(
+            singles,
+            fetchedContentTypes?.singleTypesLocales,
+            {
+              defaultLocale,
+              selectedLocale,
+            }
+          )
         ).filter(Boolean);
       }
+
       setState({
         collections,
-        collectionTypes,
+        collectionTypes: fetchedContentTypes?.collectionTypes,
         loading: false,
         defaultLocale,
         localeCollections,
