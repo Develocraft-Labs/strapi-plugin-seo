@@ -1,4 +1,10 @@
-import React, { useCallback, useState, useEffect, useMemo } from "react";
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 
 import TableFilter from "./TableFilter";
 import { useHistory } from "react-router-dom";
@@ -9,6 +15,7 @@ import styled from "styled-components";
 import TableItems from "./TableItems";
 import { Ellipsis } from "../ui/common";
 import { Cell, HeadingCell, TableComponent, Thead } from "./Table.styles";
+import { fetchData } from "../../hooks/useContentTypeFilter";
 
 const Container = styled.div`
   position: relative;
@@ -25,7 +32,7 @@ const TableFooter = styled.div`
 `;
 
 const TableWrap = styled.div`
-  min-height: 32rem;
+  min-height: 58.5rem;
   padding: 0rem;
 `;
 
@@ -66,77 +73,180 @@ const TableHeader = ({ mainField }) => {
   );
 };
 
+const handleSingleTypeFilter = async ({
+  filterValue,
+  mainField,
+  apiId,
+  collectionName,
+  selectedLocale,
+  setFilteredItems,
+  setIsNotFound,
+}) => {
+  if (!filterValue) return;
+
+  try {
+    const filter = filterValue;
+    const data = await fetchData({
+      mainField,
+      apiId,
+      filter,
+      collectionName,
+      selectedLocale,
+    });
+
+    if (data.length == 0) {
+      throw new Error("Not Found.");
+    }
+
+    setFilteredItems([data]);
+    setIsNotFound(false);
+  } catch (e) {
+    setIsNotFound(true);
+    console.error(e);
+  }
+};
+
+const handleFilter = async ({
+  filterValue,
+  mainField,
+  apiId,
+  collectionName,
+  selectedLocale,
+  setFilteredItems,
+  setIsNotFound,
+}) => {
+  console.log(filterValue, mainField, apiId, collectionName, selectedLocale);
+  if (!filterValue) return;
+
+  try {
+    const filter = filterValue;
+    const data = await fetchData({
+      mainField,
+      apiId,
+      filter,
+      collectionName,
+      selectedLocale,
+    });
+
+    if (data.length == 0) {
+      throw new Error("Not Found.");
+    }
+
+    setFilteredItems([data]);
+    setIsNotFound(false);
+  } catch (e) {
+    setIsNotFound(true);
+    console.error(e);
+  }
+};
+
 /**
  * Component that renders Table.
  * @returns {JSX.Element} Table.
  */
 const Table = ({
-  seos,
+  items,
   userEnabledLocales,
   uid,
   defaultLocale,
   isSingleType,
   mainField,
+  limit,
+  start,
+  setStart,
+  collectionName,
+  pagination,
+  apiId,
+  selectedLocale,
 }) => {
-  const [collectionTypeName] = useState(capitalize(seos.collectionName));
-  const [filteredSeos, setFilteredSeos] = useState(seos.fullResults);
+  const [collectionTypeName] = useState(capitalize(collectionName));
+  const [filteredItems, setFilteredItems] = useState(items.fullResults);
+  const [isNotFound, setIsNotFound] = useState(false);
+  const { total, pageSize, pageCount } = pagination;
 
-  const { page, pageSize, count, pageCount, setPage } = usePaginationState({
-    currentCount: filteredSeos?.length,
+  const { page, setPage } = usePaginationState({
+    currentCount: filteredItems?.length,
   });
 
-  const [filterValue, setFilterValue] = useState("");
+  const pageRef = useRef(page);
+  const pageRefVal = pageRef.current;
+  const [filterValue, setFilterValue] = useState("false");
   const history = useHistory();
 
   const updateTableFilter = useCallback(
     (value) => {
       setFilterValue(value);
       setPage(1);
-      const filteredSeos = seos.fullResults.filter((seo) => {
-        if (!seo.title || typeof seo.title !== "string") return seo;
-        return seo.title.toLowerCase().includes(value.toLowerCase());
-      });
-
-      setFilteredSeos(filteredSeos);
     },
-    [seos.fullResults, setPage]
+    [items.fullResults, setPage]
   );
 
   const handleParamsChange = useCallback(
     ({ target }) => {
       const { name, value } = target;
+
+      const handleIncrement = () => {
+        let increment = 0;
+
+        if (pageRefVal < value) {
+          increment = limit + start;
+        }
+        if (pageRefVal > value) {
+          increment = start - limit;
+        }
+
+        return increment;
+      };
+
       if (name === "params._page") {
+        const increment = handleIncrement();
+        const newStart = increment > 0 ? Math.round(increment) : 0;
+
+        pageRef.current = value;
+        setStart(newStart);
         setPage(value);
       }
     },
-    [setPage]
+    [setPage, pageRef.current]
   );
 
   useEffect(() => {
     setFilterValue("");
-    setFilteredSeos(seos.fullResults);
-    setPage(1);
-  }, [seos.fullResults]);
+    setFilteredItems(items.fullResults);
+  }, [items.fullResults]);
 
-  const getPaginatedData = () => {
-    // Start from 0
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-
-    return filteredSeos.slice(startIndex, endIndex);
-  };
+  const getPaginatedData = useCallback(() => {
+    return filteredItems;
+  }, [pageRefVal, filteredItems]);
 
   return (
     <Container>
       <h2>{collectionTypeName}</h2>
-      <EntryCount>{`${count} ${
-        count > 1 || count === 0 ? "entries" : "entry"
+      <EntryCount>{`${total} ${
+        total > 1 || total === 0 ? "entries" : "entry"
       } found`}</EntryCount>
       <TableFilter
         updateTableFilter={updateTableFilter}
         filterValue={filterValue}
+        items={items}
+        pageRef={pageRef}
+        setStart={setStart}
+        isSingleType={isSingleType}
+        handleFilter={() =>
+          handleFilter({
+            filterValue,
+            mainField,
+            apiId,
+            collectionName,
+            selectedLocale,
+            setFilteredItems,
+            setIsNotFound,
+          })
+        }
+        handleSingleTypeFilter={handleSingleTypeFilter}
+        setIsNotFound={setIsNotFound}
+        setFilteredItems={() => setFilteredItems(items.fullResults)}
       />
-
       <TableWrap>
         <TableComponent>
           <Thead>
@@ -150,22 +260,26 @@ const Table = ({
               history={history}
               defaultLocale={defaultLocale}
               isSingleType={isSingleType}
+              isNotFound={isNotFound}
+              collectionTypeName={collectionTypeName}
             />
           </tbody>
         </TableComponent>
       </TableWrap>
-      {pageCount > 1 && (
-        <TableFooter>
-          <GlobalPagination
-            onChangeParams={handleParamsChange}
-            params={{
-              _page: page,
-              _limit: pageSize,
-            }}
-            count={count}
-          />
-        </TableFooter>
-      )}
+      {isNotFound
+        ? null
+        : pageCount > 1 && (
+            <TableFooter>
+              <GlobalPagination
+                onChangeParams={handleParamsChange}
+                params={{
+                  _page: pageRefVal,
+                  _limit: pageSize,
+                }}
+                count={total}
+              />
+            </TableFooter>
+          )}
     </Container>
   );
 };

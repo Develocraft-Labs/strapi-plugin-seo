@@ -71,4 +71,50 @@ module.exports = {
       console.log(ctx, e);
     }
   },
+  fetchContentTypes: async (ctx) => {
+    try {
+      const res = await strapi.plugins["seo"].services[
+        "seo"
+      ].fetchContentTypes();
+
+      return res;
+    } catch (e) {
+      console.log(ctx, e);
+    }
+  },
+  filterContentTypeData: async (ctx) => {
+    try {
+      const { params = {} } = ctx;
+      const { apiId, mainField, filter, locale } = parseParams(params);
+      const res = await strapi.plugins["seo"].services[
+        "seo"
+      ].filterContentTypeData({ apiId, mainField, filter, locale });
+
+      return res;
+    } catch (e) {
+      console.log(ctx, e);
+    }
+  },
+  fetchContentTypeData: async (ctx) => {
+    try {
+      const { params = {} } = ctx;
+      const { start, limit, apiId, locale, mainfield, filter } =
+        parseParams(params);
+
+      const res = await strapi.plugins["seo"].services[
+        "seo"
+      ].fetchContentTypeData({
+        start,
+        limit,
+        apiId,
+        locale,
+        mainfield,
+        filter,
+      });
+
+      return res;
+    } catch (e) {
+      console.log(ctx, e);
+    }
+  },
 };

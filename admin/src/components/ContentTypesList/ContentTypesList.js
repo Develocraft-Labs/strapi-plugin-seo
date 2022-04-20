@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Table from "../Table/Table";
 import isValidLength from "../../utils/isValidLength";
 import { useContentTypeSettingsContext } from "../../containers/ContentTypeSettingsContext";
+import getPageCount from "../../utils/getPageCount";
 
 const ListElement = styled.li`
   list-style: none;
@@ -55,38 +56,56 @@ export const SingleTypesListItems = ({
   defaultLocale,
   userEnabledLocales,
   isSingleType,
+  limit,
+  setLimit,
+  start,
+  setStart,
 }) => {
-  const settings = useContentTypeSettingsContext();
+  const paginationTotal = projectCollectionTypes.length;
+  const pageSize = 10;
+  const pageCount = getPageCount(paginationTotal, pageSize);
+  const pagination = { total: paginationTotal, pageCount, pageSize };
 
   const parsedData = useMemo(() => {
     const results = projectCollectionTypes.flatMap((singleType) => {
+      console.log("inside", singleType);
       const fullResults = singleType.fullResults;
-      const setting = settings[singleType.uid];
       if (!isValidLength(fullResults)) {
         return [];
       }
       return fullResults.map((result) => ({
+        ...singleType,
         ...result,
-        title: singleType.title || result[setting?.settings?.mainField],
+        title: singleType.title || result[singleType.mainField],
         uid: singleType.uid,
       }));
     });
-    return { fullResults: results, collectionName: "Single Types" };
+
+    return { fullResults: results };
   }, [projectCollectionTypes]);
 
   if (!parsedData || !isValidLength(parsedData.fullResults)) {
     return null;
   }
 
+  console.log("projectCollectionTypes", projectCollectionTypes);
+  console.log("parsedData", parsedData);
+  // return null;
   return (
     <ListElement>
       {userEnabledLocales ? (
         <Table
-          seos={parsedData}
+          collectionName={"Single Types"}
+          items={parsedData}
           userEnabledLocales={userEnabledLocales}
           uid={"placeholder"}
           defaultLocale={defaultLocale}
           isSingleType={isSingleType}
+          pagination={pagination}
+          limit={limit}
+          setLimit={setLimit}
+          start={start}
+          setStart={setStart}
         />
       ) : null}
     </ListElement>
@@ -130,7 +149,7 @@ const CollectionTypesListItem = ({
   );
 };
 
-const CollectionTypesListItems = ({
+export const CollectionTypesListItems = ({
   projectCollectionTypes,
   defaultLocale,
   userEnabledLocales,
