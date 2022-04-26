@@ -7,7 +7,7 @@ import ApplyButton from "../ui/ApplyButton";
 
 const HideFilterButton = styled.button`
   width: fit-content;
-  padding: 0.3rem 0.7rem;
+  padding: 0.3rem;
   align-self: flex-end;
   margin: 1rem 0rem;
   color: rgb(195, 197, 200);
@@ -16,7 +16,7 @@ const HideFilterButton = styled.button`
 
 const FilterButton = styled.button`
   width: fit-content;
-  padding: 0.3rem 0.7rem;
+  padding: 0.3rem;
   align-self: flex-start;
   margin: 1.8rem 0rem 1rem 0rem;
   background-color: rgb(255, 255, 255);
@@ -65,8 +65,6 @@ const TableFilter = ({
   updateTableFilter,
   filterValue,
   handleFilter,
-  handleSingleTypeFilter,
-  isSingleType,
   setFilteredItems,
   pageRef,
   setStart,
@@ -88,9 +86,6 @@ const TableFilter = ({
   }, []);
 
   const handleContentTypeFilters = useCallback(() => {
-    if (isSingleType) {
-      handleSingleTypeFilter();
-    }
     handleFilter();
   });
 

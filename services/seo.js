@@ -165,7 +165,7 @@ module.exports = {
         const pageCount = handlePageCount({ total, pageSize });
 
         data.push({
-          [`${collectionName}`]: modelData,
+          [`${collectionName}`]: modelData[0],
           contentType,
           collectionName,
           isI18nEnabled,

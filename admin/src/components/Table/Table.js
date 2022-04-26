@@ -17,7 +17,7 @@ import { Ellipsis } from "../ui/common";
 import { Cell, HeadingCell, TableComponent, Thead } from "./Table.styles";
 import { fetchData } from "../../hooks/useContentTypeFilter";
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -25,18 +25,18 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const TableFooter = styled.div`
+export const TableFooter = styled.div`
   width: fit-content;
   padding: 2rem 0rem 0rem 0rem;
   align-self: flex-end;
 `;
 
-const TableWrap = styled.div`
+export const TableWrap = styled.div`
   min-height: 58.5rem;
   padding: 0rem;
 `;
 
-const EntryCount = styled.p`
+export const EntryCount = styled.p`
   width: 100%;
   margin: 0px;
   overflow: hidden;
@@ -46,9 +46,10 @@ const EntryCount = styled.p`
   font-weight: 400;
   line-height: normal;
   color: rgb(120, 126, 143);
+  padding-bottom: 0.4rem;
 `;
 
-const getHeaders = ({ mainField }) => [
+export const getHeaders = ({ mainField }) => [
   "Id",
   mainField || "Title",
   "Created at",
@@ -58,7 +59,7 @@ const getHeaders = ({ mainField }) => [
   " ",
 ];
 
-const TableHeader = ({ mainField }) => {
+export const TableHeader = ({ mainField }) => {
   const headers = useMemo(() => getHeaders({ mainField }), [mainField]);
   return (
     <Cell>
@@ -73,39 +74,6 @@ const TableHeader = ({ mainField }) => {
   );
 };
 
-const handleSingleTypeFilter = async ({
-  filterValue,
-  mainField,
-  apiId,
-  collectionName,
-  selectedLocale,
-  setFilteredItems,
-  setIsNotFound,
-}) => {
-  if (!filterValue) return;
-
-  try {
-    const filter = filterValue;
-    const data = await fetchData({
-      mainField,
-      apiId,
-      filter,
-      collectionName,
-      selectedLocale,
-    });
-
-    if (data.length == 0) {
-      throw new Error("Not Found.");
-    }
-
-    setFilteredItems([data]);
-    setIsNotFound(false);
-  } catch (e) {
-    setIsNotFound(true);
-    console.error(e);
-  }
-};
-
 const handleFilter = async ({
   filterValue,
   mainField,
@@ -115,7 +83,6 @@ const handleFilter = async ({
   setFilteredItems,
   setIsNotFound,
 }) => {
-  console.log(filterValue, mainField, apiId, collectionName, selectedLocale);
   if (!filterValue) return;
 
   try {
@@ -225,28 +192,29 @@ const Table = ({
       <EntryCount>{`${total} ${
         total > 1 || total === 0 ? "entries" : "entry"
       } found`}</EntryCount>
-      <TableFilter
-        updateTableFilter={updateTableFilter}
-        filterValue={filterValue}
-        items={items}
-        pageRef={pageRef}
-        setStart={setStart}
-        isSingleType={isSingleType}
-        handleFilter={() =>
-          handleFilter({
-            filterValue,
-            mainField,
-            apiId,
-            collectionName,
-            selectedLocale,
-            setFilteredItems,
-            setIsNotFound,
-          })
-        }
-        handleSingleTypeFilter={handleSingleTypeFilter}
-        setIsNotFound={setIsNotFound}
-        setFilteredItems={() => setFilteredItems(items.fullResults)}
-      />
+      {!isSingleType ? (
+        <TableFilter
+          updateTableFilter={updateTableFilter}
+          filterValue={filterValue}
+          items={items}
+          pageRef={pageRef}
+          setStart={setStart}
+          isSingleType={isSingleType}
+          handleFilter={() =>
+            handleFilter({
+              filterValue,
+              mainField,
+              apiId,
+              collectionName,
+              selectedLocale,
+              setFilteredItems,
+              setIsNotFound,
+            })
+          }
+          setIsNotFound={setIsNotFound}
+          setFilteredItems={() => setFilteredItems(items.fullResults)}
+        />
+      ) : null}
       <TableWrap>
         <TableComponent>
           <Thead>

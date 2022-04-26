@@ -1,13 +1,12 @@
 import React, { useMemo, useState } from "react";
-
 import styled from "styled-components";
+
 import Table from "../Table/Table";
-// import isValidLength from "../utils/isValidLength";
 import { useContentTypeSettingsContext } from "../../containers/ContentTypeSettingsContext";
-import { useLocaleContext } from "../../containers/LocaleContextProvider/LocaleContextProvider";
 import useContentTypeData from "../../hooks/useContentTypeData";
-import { SingleTypesListItems } from "../ContentTypesList/ContentTypesList";
 import isValidLength from "../../utils/isValidLength";
+
+import SingleTypesTable from "../Table/SingleTypesTable";
 
 const ListElement = styled.li`
   list-style: none;
@@ -74,129 +73,119 @@ const CollectionTypesListItem = ({
   );
 };
 
+const SingleTypesListItems = ({
+  projectCollectionTypes,
+  defaultLocale,
+  userEnabledLocales,
+  isSingleType,
+}) => {
+  const settings = useContentTypeSettingsContext();
+
+  const parsedData = useMemo(() => {
+    const results = projectCollectionTypes.flatMap((singleType) => {
+      const fullResults = singleType.fullResults;
+      const setting = settings[singleType.uid];
+      const mainField = setting?.settings?.mainField;
+
+      if (!isValidLength(fullResults)) {
+        return [];
+      }
+
+      return fullResults.map((result) => ({
+        ...singleType,
+        ...result,
+        title: singleType.title || result[mainField],
+        uid: singleType.uid,
+      }));
+    });
+
+    return { fullResults: results };
+  }, [projectCollectionTypes]);
+
+  if (!parsedData || !isValidLength(parsedData.fullResults)) {
+    return null;
+  }
+
+  return (
+    <ListElement>
+      {userEnabledLocales ? (
+        <SingleTypesTable
+          collectionName={"Single Types"}
+          items={parsedData}
+          userEnabledLocales={userEnabledLocales}
+          uid={"placeholder"}
+          defaultLocale={defaultLocale}
+          isSingleType={isSingleType}
+        />
+      ) : null}
+    </ListElement>
+  );
+};
+
 export const SingleContentTypesTable = ({
   userEnabledLocales,
   defaultLocale,
-  selectedLocale,
   singleTypesData,
 }) => {
-  const localeContext = useLocaleContext();
-  const { isI18nPluginInstalled } = localeContext;
-
-  const [start, setStart] = useState(0);
-  const [limit, setLimit] = useState(10);
-
-  if (!isValidLength(singleTypesData)) {
+  if (!singleTypesData || !isValidLength(singleTypesData)) {
     return null;
   }
-  const { locale } = singleTypesData[0];
 
-  if (isI18nPluginInstalled && selectedLocale === locale) {
-    return (
-      <List>
-        <SingleTypesListItems
-          projectCollectionTypes={singleTypesData}
-          defaultLocale={defaultLocale}
-          userEnabledLocales={userEnabledLocales}
-          isSingleType={true}
-          limit={limit}
-          setLimit={setLimit}
-          start={start}
-          setStart={setStart}
-        />
-      </List>
-    );
-  }
-
-  if (!isI18nPluginInstalled && isValidLength(singleTypesData)) {
-    return (
-      <List>
-        <SingleTypesListItems
-          projectCollectionTypes={singleTypesData}
-          defaultLocale={defaultLocale}
-          userEnabledLocales={userEnabledLocales}
-          isSingleType={true}
-          limit={limit}
-          setLimit={setLimit}
-          start={start}
-          setStart={setStart}
-        />
-      </List>
-    );
-  }
-
-  return null;
+  return (
+    <List>
+      <SingleTypesListItems
+        projectCollectionTypes={singleTypesData}
+        defaultLocale={defaultLocale}
+        userEnabledLocales={userEnabledLocales}
+        isSingleType
+      />
+    </List>
+  );
 };
 
-const ContentTypeTable = ({
+const CollectionTypesTable = ({
   type,
   userEnabledLocales,
   defaultLocale,
   selectedLocale,
 }) => {
-  const localeContext = useLocaleContext();
-  const { isI18nPluginInstalled } = localeContext;
-  const { uid, apiId } = type;
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(10);
 
   const settings = useContentTypeSettingsContext();
-  const setting = settings[uid]?.settings;
+  const setting = settings[type?.uid]?.settings;
   const mainField = setting?.mainField;
 
-  const { data, collectionName, locale, pagination } = useContentTypeData({
+  const { data, collectionName, pagination } = useContentTypeData({
     type,
     selectedLocale,
     limit,
     start,
   });
 
-  if (isI18nPluginInstalled && selectedLocale === locale) {
-    if (data && data.length > 0)
-      return (
-        <CollectionTypesListItem
-          uid={uid}
-          items={data}
-          length={data.length}
-          userEnabledLocales={userEnabledLocales}
-          defaultLocale={defaultLocale}
-          limit={limit}
-          setLimit={setLimit}
-          start={start}
-          setStart={setStart}
-          collectionName={collectionName}
-          pagination={pagination}
-          mainField={mainField}
-          setting={setting}
-          apiId={apiId}
-          selectedLocale={selectedLocale}
-        />
-      );
+  if (!data || !isValidLength(data)) {
+    return null;
   }
 
-  if (!isI18nPluginInstalled && data && data.length > 0) {
-    return (
-      <CollectionTypesListItem
-        uid={uid}
-        items={data}
-        length={data.length}
-        userEnabledLocales={userEnabledLocales}
-        defaultLocale={defaultLocale}
-        limit={limit}
-        setLimit={setLimit}
-        start={start}
-        setStart={setStart}
-        collectionName={collectionName}
-        pagination={pagination}
-        mainField={mainField}
-        setting={setting}
-        apiId={apiId}
-        selectedLocale={selectedLocale}
-      />
-    );
-  }
-
-  return null;
+  return (
+    <CollectionTypesListItem
+      uid={type?.uid}
+      items={data}
+      length={data.length}
+      userEnabledLocales={userEnabledLocales}
+      defaultLocale={defaultLocale}
+      limit={limit}
+      setLimit={setLimit}
+      start={start}
+      setStart={setStart}
+      collectionName={collectionName}
+      pagination={pagination}
+      mainField={mainField}
+      setting={setting}
+      apiId={type?.apiId}
+      selectedLocale={selectedLocale}
+    />
+  );
 };
 
-export default ContentTypeTable;
+export default CollectionTypesTable;

@@ -57,7 +57,7 @@ const useContentTypeData = ({ type, selectedLocale, limit, start }) => {
     return () => {
       isMounted = false;
     };
-  }, [start]);
+  }, [start, selectedLocale]);
 
   return contentTypeData;
 };

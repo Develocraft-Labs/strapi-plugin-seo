@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchContentTypeData } from "../api/seoApi";
 import { useContentTypeSettingsContext } from "../containers/ContentTypeSettingsContext";
 
-const useSingleContentTypeData = ({ contentTypes, selectedLocale, limit }) => {
+const useSingleContentTypeData = ({ contentTypes, selectedLocale }) => {
   const [data, setData] = useState([]);
   const settings = useContentTypeSettingsContext();
 
@@ -18,16 +18,16 @@ const useSingleContentTypeData = ({ contentTypes, selectedLocale, limit }) => {
         const mainField = setting?.settings?.mainField;
 
         const fetchData = async () => {
-          const fetchedData = await fetchContentTypeData({
+          const fetchedData = await await fetchContentTypeData({
             start: 0,
-            limit: limit,
+            limit: 10,
             apiId,
             locale: selectedLocale,
           });
+
           const { pagination, contentType, isI18nEnabled, locale } =
             fetchedData[0];
           const singeTypeData = fetchedData[0]?.[`${collectionName}`];
-
           data.push({
             data: singeTypeData,
             pagination,
