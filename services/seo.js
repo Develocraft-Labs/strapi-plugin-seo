@@ -131,6 +131,11 @@ module.exports = {
 
   async fetchContentTypeData({ start, limit, apiId, locale }) {
     const isI18nPluginInstalled = !!strapi.plugins.i18n;
+    const constantDefaultLocale =
+      strapi?.plugins?.i18n?.constants?.index?.DEFAULT_LOCALE?.code;
+    const getDefaultLocale =
+      await strapi?.plugins?.i18n?.services?.locales?.getDefaultLocale();
+    const defaultLocale = constantDefaultLocale || getDefaultLocale;
     const collection = await await strapi.query(apiId);
     const model = collection.model;
     const isI18nEnabled = !!model?.pluginOptions?.i18n;
@@ -156,26 +161,6 @@ module.exports = {
     };
 
     const handleLocaleContentTypeData = async () => {
-      if (contentType === "singleType") {
-        const modelData = await collection.find({
-          _locale: locale,
-        });
-
-        const total = await collection.count({ _locale: locale });
-        const pageCount = handlePageCount({ total, pageSize });
-
-        data.push({
-          [`${collectionName}`]: modelData[0],
-          contentType,
-          collectionName,
-          isI18nEnabled,
-          uid: modelUid,
-          pagination: { total, page: 1, pageSize: pageSize, pageCount },
-          locale,
-        });
-        return data;
-      }
-
       const modelData = await collection.find({
         _start: start,
         _limit: limit,
@@ -201,24 +186,6 @@ module.exports = {
       return handleLocaleContentTypeData();
     }
 
-    if (contentType === "singleType") {
-      const modelData = await collection.findOne();
-      const total = modelData.length;
-      const pageCount = Math.round(total / pageSize);
-
-      data.push({
-        [`${collectionName}`]: modelData,
-        contentType,
-        collectionName,
-        isI18nEnabled,
-        uid: modelUid,
-        pagination: { total, page: 1, pageSize: pageSize, pageCount },
-        locale: "en",
-      });
-
-      return data;
-    }
-
     if (!isI18nPluginInstalled && isI18nEnabled) {
       const modelData = await collection.find({
         _start: start,
@@ -242,6 +209,42 @@ module.exports = {
         locale: "en",
       });
 
+      return data;
+    }
+
+    if (!isI18nEnabled && isI18nPluginInstalled) {
+      if (defaultLocale === locale) {
+        const modelData = await collection.find({
+          _start: start,
+          _limit: limit,
+        });
+        const total = await collection.count();
+        const pageCount = handlePageCount({ total, pageSize });
+
+        data.push({
+          [`${collectionName}`]: modelData,
+          contentType,
+          collectionName,
+          isI18nEnabled,
+          uid: modelUid,
+          pagination: { total, page: 1, pageSize: pageSize, pageCount },
+          locale: "en",
+        });
+
+        return data;
+      }
+      const total = 0;
+      const pageCount = 0;
+
+      data.push({
+        [`${collectionName}`]: null,
+        contentType,
+        collectionName,
+        isI18nEnabled,
+        uid: modelUid,
+        pagination: { total, page: 1, pageSize: pageSize, pageCount },
+        locale: "en",
+      });
       return data;
     }
 

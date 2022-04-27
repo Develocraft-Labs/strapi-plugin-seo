@@ -47,6 +47,7 @@ const Home = () => {
   if (!state || state.loading) {
     return <LoadingIndicatorPage />;
   }
+
   if (isI18nPluginInstalled && !userEnabledLocales) {
     return <LoadingIndicatorPage />;
   }

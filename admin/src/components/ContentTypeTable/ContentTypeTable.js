@@ -148,6 +148,7 @@ const CollectionTypesTable = ({
   userEnabledLocales,
   defaultLocale,
   selectedLocale,
+  isI18nPluginInstalled,
 }) => {
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -164,6 +165,10 @@ const CollectionTypesTable = ({
   });
 
   if (!data || !isValidLength(data)) {
+    return null;
+  }
+
+  if (isI18nPluginInstalled && !isValidLength(data)) {
     return null;
   }
 
