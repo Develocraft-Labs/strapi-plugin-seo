@@ -3,11 +3,12 @@ import { ErrorFallback, LoadingIndicatorPage } from "strapi-helper-plugin";
 import styled from "styled-components";
 
 import TranslationPicker from "./components/TranslationPicker/TranslationPicker";
-import ContentTypesList from "./components/ContentTypesList/ContentTypesList";
-import isValidLength from "./utils/isValidLength";
 import useModelsState from "./useModelsState";
 import { useLocaleContext } from "./containers/LocaleContextProvider/LocaleContextProvider";
 import { BoxColumn, Column } from "./components/ui/common";
+
+import useContentTypes from "./hooks/useContentTypes";
+import ContentTypesList from "./components/ContentTypesList/ContentTypesList";
 
 const HomeContainer = styled(Column)`
   padding: 18px 30px 66px;
@@ -21,6 +22,9 @@ const Home = () => {
   const [selectedLocale, setSelectedLocale] = useState(
     localeContext.isI18nPluginInstalled ? localeContext.defaultLocale : ""
   );
+
+  const contentTypesData = useContentTypes();
+  const contentTypes = contentTypesData.contentTypes;
 
   const state = useModelsState({
     selectedLocale,
@@ -43,6 +47,7 @@ const Home = () => {
   if (!state || state.loading) {
     return <LoadingIndicatorPage />;
   }
+
   if (isI18nPluginInstalled && !userEnabledLocales) {
     return <LoadingIndicatorPage />;
   }
@@ -56,25 +61,15 @@ const Home = () => {
         />
       )}
       <Column>
-        {state.localeSingles && isValidLength(state.localeSingles) ? (
-          <ContentTypesList
-            content={state.localeSingles}
-            defaultLocale={state.defaultLocale}
-            userEnabledLocales={
-              localeContext.userEnabledLocales || userEnabledLocales
-            }
-            isSingleType
-          />
-        ) : null}
-        {state.localeCollections && isValidLength(state.localeCollections) ? (
-          <ContentTypesList
-            content={state.localeCollections}
-            defaultLocale={state.defaultLocale}
-            userEnabledLocales={
-              localeContext.userEnabledLocales || userEnabledLocales
-            }
-          />
-        ) : null}
+        <ContentTypesList
+          defaultLocale={state.defaultLocale}
+          userEnabledLocales={
+            localeContext.userEnabledLocales || userEnabledLocales
+          }
+          contentTypes={contentTypes}
+          selectedLocale={selectedLocale}
+          localeSingles={state.localeSingles}
+        />
       </Column>
     </HomeContainer>
   );

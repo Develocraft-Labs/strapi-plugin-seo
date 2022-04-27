@@ -34,3 +34,37 @@ export const deleteSeo = ({ id }) =>
       "Content-Type": "application/json",
     },
   });
+
+export const fetchContentTypeData = ({ start, limit, apiId, locale }) =>
+  request(
+    `/${pluginId}/content-type-data/${start}/${limit}/${apiId}/${
+      locale !== "" ? locale : "en"
+    }`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+export const filterContentTypeData = ({ filter, apiId, mainField, locale }) =>
+  request(
+    `/${pluginId}/filter-content-type-data/${apiId}/${mainField}/${filter}/${
+      locale !== "" ? locale : "en"
+    }`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+export const fetchContentTypes = () =>
+  request(`/${pluginId}/content-types`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });

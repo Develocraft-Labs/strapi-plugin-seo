@@ -47,6 +47,30 @@
       "config": {
         "policies": ["admin::isAuthenticatedAdmin"]
       }
+    },
+    {
+      "method": "GET",
+      "path": "/content-type-data/:start/:limit/:apiId/:locale",
+      "handler": "seo.fetchContentTypeData",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/filter-content-type-data/:apiId/:mainField/:filter/:locale",
+      "handler": "seo.filterContentTypeData",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/content-types",
+      "handler": "seo.fetchContentTypes",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

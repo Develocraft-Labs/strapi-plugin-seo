@@ -37,18 +37,9 @@ const getEnLocaleData = (data) => {
 };
 
 const buildEnState = async () => {
-  const { collectionTypes, singleTypes } = await getContentTypes();
+  const { singleTypes } = await getContentTypes();
 
-  let localeCollections = [];
   let localeSingles = [];
-  let collections = [];
-  if (Array.isArray(collectionTypes) && isValidLength(collectionTypes)) {
-    const data = await getItems(collectionTypes, request);
-    const enLocaleData = getEnLocaleData(data);
-
-    collections = enLocaleData;
-    localeCollections = enLocaleData;
-  }
 
   if (Array.isArray(singleTypes) && isValidLength(singleTypes)) {
     const data = await getItems(singleTypes, request);
@@ -63,11 +54,8 @@ const buildEnState = async () => {
   }
 
   return {
-    collections,
-    collectionTypes,
     loading: false,
     defaultLocale: "en",
-    localeCollections,
     localeSingles,
   };
 };
@@ -122,36 +110,12 @@ const getLocaleSingles = async (singles, { selectedLocale, defaultLocale }) => {
   );
 };
 
-const getLocaleCollections = async (
-  collections,
-  { selectedLocale, defaultLocale }
-) => {
-  return await Promise.all(
-    collections.map(async (collection) => {
-      const { uid, isI18nEnabled, collectionName } = collection;
-      const length = collection?.fullResults?.length;
-      if (length === 0) return collection;
-
-      return getLocaleItems({
-        collection,
-        isI18nEnabled,
-        uid,
-        collectionName,
-        selectedLocale,
-        defaultLocale,
-      });
-    })
-  );
-};
-
 const useModelsState = ({ selectedLocale, setUserEnabledLocales }) => {
   const { isI18nPluginInstalled, userEnabledLocales } = useLocaleContext();
   const [state, setState] = useState({
     loading: true,
-    collections: [],
     defaultLocale: "",
     selectedLocale: "",
-    localeCollections: [],
     localeSingles: [],
     error: null,
   });
@@ -165,23 +129,11 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }) => {
         return;
       }
 
-      let collections = [];
-      let localeCollections = [];
       let localeSingles = [];
 
       const defaultLocale = await getDefaultLocale(userEnabledLocales);
 
-      const { collectionTypes, singleTypes } = await getContentTypes();
-
-      if (Array.isArray(collectionTypes) && isValidLength(collectionTypes)) {
-        const collections = await getItems(collectionTypes, request);
-        localeCollections = (
-          await getLocaleCollections(collections, {
-            defaultLocale,
-            selectedLocale,
-          })
-        ).filter(Boolean);
-      }
+      const { singleTypes } = await getContentTypes();
 
       if (Array.isArray(singleTypes) && isValidLength(singleTypes)) {
         const singles = await getItems(singleTypes, request);
@@ -190,11 +142,8 @@ const useModelsState = ({ selectedLocale, setUserEnabledLocales }) => {
         ).filter(Boolean);
       }
       setState({
-        collections,
-        collectionTypes,
         loading: false,
         defaultLocale,
-        localeCollections,
         localeSingles,
       });
     } catch (error) {

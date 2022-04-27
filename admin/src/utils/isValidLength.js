@@ -3,5 +3,5 @@
  * @param {Array} array
  * @returns {Boolean} true | false.
  */
-const isValidLength = (array) => array && array.length && array.length > 0;
+const isValidLength = (array) => !!(array && array.length && array.length > 0);
 export default isValidLength;

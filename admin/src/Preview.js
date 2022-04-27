@@ -258,7 +258,7 @@ const Preview = ({
   return (
     <Column>
       <PreviewHeader>
-        <Resource resource={resource} />
+        <Resource resource={resource} uid={uid} />
         {creation ? (
           <SaveButton onClick={handleRelation}>
             {creationMsg ? creationMsg : "Create Relation"}
