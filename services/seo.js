@@ -133,9 +133,7 @@ module.exports = {
     const isI18nPluginInstalled = !!strapi.plugins.i18n;
     const constantDefaultLocale =
       strapi?.plugins?.i18n?.constants?.index?.DEFAULT_LOCALE?.code;
-    const getDefaultLocale =
-      await strapi?.plugins?.i18n?.services?.locales?.getDefaultLocale();
-    const defaultLocale = constantDefaultLocale || getDefaultLocale;
+    const defaultLocale = constantDefaultLocale || "en";
     const collection = await await strapi.query(apiId);
     const model = collection.model;
     const isI18nEnabled = !!model?.pluginOptions?.i18n;
@@ -160,6 +158,22 @@ module.exports = {
       return Math.round(pageCount);
     };
 
+    const handleData = (parsedModelData, { total, locale = "en" }) => {
+      const pageCount = handlePageCount({ total, pageSize });
+
+      data.push({
+        [`${collectionName}`]: parsedModelData,
+        contentType,
+        collectionName,
+        isI18nEnabled,
+        uid: modelUid,
+        pagination: { total: total, page: 1, pageSize: pageSize, pageCount },
+        locale: locale,
+      });
+
+      return data;
+    };
+
     const handleLocaleContentTypeData = async () => {
       const modelData = await collection.find({
         _start: start,
@@ -168,103 +182,42 @@ module.exports = {
       });
 
       const total = await collection.count({ _locale: locale });
-      const pageCount = handlePageCount({ total, pageSize });
 
-      data.push({
-        [`${collectionName}`]: modelData,
-        contentType,
-        collectionName,
-        isI18nEnabled,
-        uid: modelUid,
-        pagination: { total, page: 1, pageSize: pageSize, pageCount },
-        locale,
-      });
-      return data;
+      return handleData(modelData, { total, locale });
     };
 
     if (isI18nEnabled && isI18nPluginInstalled) {
       return handleLocaleContentTypeData();
     }
 
-    if (!isI18nPluginInstalled && isI18nEnabled) {
-      const modelData = await collection.find({
-        _start: start,
-        _limit: limit,
-      });
-
-      const filteredModelData = modelData.filter(
-        (item) => item.locale === "en"
-      );
-
-      const total = filteredModelData.length;
-      const pageCount = handlePageCount({ total, pageSize });
-
-      data.push({
-        [`${collectionName}`]: filteredModelData,
-        contentType,
-        collectionName,
-        isI18nEnabled,
-        uid: modelUid,
-        pagination: { total, page: 1, pageSize: pageSize, pageCount },
-        locale: "en",
-      });
-
-      return data;
-    }
-
-    if (!isI18nEnabled && isI18nPluginInstalled) {
-      if (defaultLocale === locale) {
-        const modelData = await collection.find({
-          _start: start,
-          _limit: limit,
-        });
-        const total = await collection.count();
-        const pageCount = handlePageCount({ total, pageSize });
-
-        data.push({
-          [`${collectionName}`]: modelData,
-          contentType,
-          collectionName,
-          isI18nEnabled,
-          uid: modelUid,
-          pagination: { total, page: 1, pageSize: pageSize, pageCount },
-          locale: "en",
-        });
-
-        return data;
-      }
-      const total = 0;
-      const pageCount = 0;
-
-      data.push({
-        [`${collectionName}`]: null,
-        contentType,
-        collectionName,
-        isI18nEnabled,
-        uid: modelUid,
-        pagination: { total, page: 1, pageSize: pageSize, pageCount },
-        locale: "en",
-      });
-      return data;
-    }
-
     const modelData = await collection.find({
       _start: start,
       _limit: limit,
     });
+
+    if (!isI18nPluginInstalled && isI18nEnabled) {
+      const filteredModelData = modelData.filter(
+        (item) => item.locale === defaultLocale
+      );
+
+      const total = filteredModelData.length;
+
+      return handleData(filteredModelData, { total });
+    }
+
+    if (!isI18nEnabled && isI18nPluginInstalled) {
+      if (defaultLocale === locale) {
+        const total = await collection.count();
+
+        return handleData(modelData, { total, locale });
+      }
+      const total = 0;
+
+      return handleData(null, { total, locale });
+    }
+
     const total = await collection.count();
-    const pageCount = handlePageCount({ total, pageSize });
 
-    data.push({
-      [`${collectionName}`]: modelData,
-      contentType,
-      collectionName,
-      isI18nEnabled,
-      uid: modelUid,
-      pagination: { total, page: 1, pageSize: pageSize, pageCount },
-      locale: "en",
-    });
-
-    return data;
+    return handleData(modelData, { total });
   },
 };
